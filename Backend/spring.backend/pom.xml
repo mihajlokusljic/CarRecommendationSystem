@@ -57,9 +57,9 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>kusljic.mihajlo.sbnz</groupId>
-			<artifactId>kjar</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<groupId>sbnz.integracija</groupId>
+			<artifactId>drools-spring-kjar</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
