@@ -14,6 +14,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import kusljic.mihajlo.sbnz.spring.backend.util.JwtRequestFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -21,16 +24,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	private UserDetailsService userDetailsService;
+	private JwtRequestFilter jwtAuthFilter;
 	
 	@Autowired
-	public SecurityConfiguration(UserDetailsService userDetailsService) {
+	public SecurityConfiguration(UserDetailsService userDetailsService, JwtRequestFilter jwtRequestFilter) {
 		super();
 		this.userDetailsService = userDetailsService;
+		this.jwtAuthFilter = jwtRequestFilter;
 	}
 
-	// @Autowired
-	// private JwtRequestFilter jwtAuthFilter;
-	
 	@Autowired
 	public void configureAuthentication(
 			AuthenticationManagerBuilder authenticationManagerBuilder)
@@ -60,11 +62,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
 		.authorizeRequests()
-		.antMatchers(HttpMethod.GET, "api/hello").permitAll()
-		.antMatchers(HttpMethod.POST, "api/auth").permitAll();
+		.antMatchers(HttpMethod.GET, "/api/hello").permitAll()
+		.antMatchers(HttpMethod.POST, "/api/auth").permitAll()
+		.anyRequest().authenticated();
 		
 		// Custom JWT based authentication
-		// http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+		http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 
 }

@@ -3,6 +3,7 @@ package kusljic.mihajlo.sbnz.spring.backend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,7 @@ public class AppUserController {
 	}
 
 	@PostMapping(value = "/admins")
+	@PreAuthorize("hasRole('ADMINISTRATOR')")
 	public ResponseEntity<AppUserDTO> registerAdministrator(@RequestBody UserRegistrationDTO newUserData) {
 		AppUser newUser = new AppUser(null, newUserData.getUsername(), newUserData.getPassword(), newUserData.getFullName(), UserRole.ADMINISTRATOR);
 		newUser = this.appUserService.registerUser(newUser);
