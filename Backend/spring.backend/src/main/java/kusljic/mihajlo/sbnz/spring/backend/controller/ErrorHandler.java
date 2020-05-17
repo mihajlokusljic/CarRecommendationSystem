@@ -10,14 +10,15 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 
 import kusljic.mihajlo.sbnz.spring.backend.exception.EntityAlreadyExistsException;
+import kusljic.mihajlo.sbnz.spring.backend.exception.InvalidFieldException;
 
 @ControllerAdvice
 public class ErrorHandler {
 	
-	@ExceptionHandler(EntityAlreadyExistsException.class)
+	@ExceptionHandler(value = { EntityAlreadyExistsException.class, InvalidFieldException.class })
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
-	String onEntityAlreadyExistsException(EntityAlreadyExistsException e) {
+	String onBadRequests(EntityAlreadyExistsException e) {
 		return e.getMessage();
 	}
 	

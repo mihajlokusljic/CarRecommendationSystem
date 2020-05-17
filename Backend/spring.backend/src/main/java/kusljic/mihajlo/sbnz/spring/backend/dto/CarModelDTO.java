@@ -1,95 +1,62 @@
-package kusljic.mihajlo.sbnz.spring.backend.facts;
+package kusljic.mihajlo.sbnz.spring.backend.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import kusljic.mihajlo.sbnz.spring.backend.facts.CarModel;
+import kusljic.mihajlo.sbnz.spring.backend.facts.CarType;
+import kusljic.mihajlo.sbnz.spring.backend.facts.FuelType;
+import kusljic.mihajlo.sbnz.spring.backend.facts.Transmission;
 
-@Entity
-@Table(name = "car_model")
-public class CarModel {
+public class CarModelDTO {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name = "base_price_euros", nullable = false)
 	private int basePriceEuros;
-	
-	@Column(name = "bluetooth_connective", nullable = false)
 	private boolean bluetoothConnective;
-	
-	@Column(name = "boot_capacity_litres", nullable = false)
 	private int bootCapacityLitres;
-	
-	@Column(name = "doors_number", nullable = false)
 	private int doorsNumber;
-	
-	@Column(name = "engine_displacement_ccm", nullable = false)
 	private int engineDisplacementCcm;
-	
-	@Column(name = "engine_power_bhp", nullable = false)
 	private double enginePowerBhp;
-	
-	@Column(name = "fuel_type", nullable = false)
-	@Enumerated(EnumType.STRING)
 	private FuelType fuelType;
-	
-	@Column(name = "navigation_system", nullable = false)
 	private boolean havingNavigationSystem;
-	
-	@Column(name = "parking_sensors", nullable = false)
 	private boolean havingParkingSensors;
-	
-	@Column(name = "passanger_airbags", nullable = false)
 	private boolean havingPassangerAirbags;
-	
-	@Column(name = "rear_camera", nullable = false)
 	private boolean havingRearCamera;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "manufacturer_id")
-	private CarManufacturer manufacturer;
-	
-	@Column(name = "mileage", nullable = false)
+	private Long manufacturerId;
+	private String manufacturerName;
 	private double mileage;
-	
-	@Column(name = "name", nullable = false)
 	private String name;
-	
-	@Column(name = "seats_number", nullable = false)
 	private int seatsNumber;
-	
-	@Column(name = "child_seat_mounts", nullable = false)
 	private boolean supportingChildSeatMounts;
-	
-	@Column(name = "top_speed_kmh", nullable = false)
 	private int topSpeedKmh;
-	
-	@Column(name = "transmission", nullable = false)
-	@Enumerated(EnumType.STRING)
 	private Transmission transmission;
-	
-	@Column(name = "type", nullable = false)
-	@Enumerated(EnumType.STRING)
 	private CarType type;
 	
-	public CarModel() {
+	public CarModelDTO() {
 		super();
 	}
 	
-	@Override
-	public String toString() {
-		return String.format("%s %s", manufacturer.getName(), name);
+	public CarModelDTO(CarModel carModel) {
+		this.id = carModel.getId();
+		this.basePriceEuros = carModel.getBasePriceEuros();
+		this.bluetoothConnective = carModel.isBluetoothConnective();
+		this.bootCapacityLitres = carModel.getBootCapacityLitres();
+		this.doorsNumber = carModel.getDoorsNumber();
+		this.engineDisplacementCcm = carModel.getEngineDisplacementCcm();
+		this.enginePowerBhp = carModel.getEnginePowerBhp();
+		this.fuelType = carModel.getFuelType();
+		this.havingNavigationSystem = carModel.isHavingNavigationSystem();
+		this.havingParkingSensors = carModel.isHavingParkingSensors();
+		this.havingPassangerAirbags = carModel.isHavingPassangerAirbags();
+		this.havingRearCamera = carModel.isHavingRearCamera();
+		this.manufacturerId = carModel.getManufacturer().getId();
+		this.manufacturerName = carModel.getManufacturer().getName();
+		this.mileage = carModel.getMileage();
+		this.name = carModel.getName();
+		this.seatsNumber = carModel.getSeatsNumber();
+		this.supportingChildSeatMounts = carModel.isSupportingChildSeatMounts();
+		this.topSpeedKmh = carModel.getTopSpeedKmh();
+		this.transmission = carModel.getTransmission();
+		this.type = carModel.getType();
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -186,12 +153,20 @@ public class CarModel {
 		this.havingRearCamera = havingRearCamera;
 	}
 
-	public CarManufacturer getManufacturer() {
-		return manufacturer;
+	public Long getManufacturerId() {
+		return manufacturerId;
 	}
 
-	public void setManufacturer(CarManufacturer manufacturer) {
-		this.manufacturer = manufacturer;
+	public void setManufacturerId(Long manufacturerId) {
+		this.manufacturerId = manufacturerId;
+	}
+
+	public String getManufacturerName() {
+		return manufacturerName;
+	}
+
+	public void setManufacturerName(String manufacturerName) {
+		this.manufacturerName = manufacturerName;
 	}
 
 	public double getMileage() {
@@ -249,5 +224,5 @@ public class CarModel {
 	public void setType(CarType type) {
 		this.type = type;
 	}
-	
+
 }

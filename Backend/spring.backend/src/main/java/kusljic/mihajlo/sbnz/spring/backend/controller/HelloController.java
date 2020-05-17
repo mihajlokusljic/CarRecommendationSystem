@@ -2,6 +2,7 @@ package kusljic.mihajlo.sbnz.spring.backend.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ public class HelloController {
 	}
 	
 	@GetMapping(value = "/toUser")
+	@PreAuthorize("hasRole('ADMINISTRATOR')")
 	public ResponseEntity<String> greetByName() {
 		String message = String.format("Hello, %s!", this.currentUsername());
 		return new ResponseEntity<String>(message, HttpStatus.OK);

@@ -41,7 +41,7 @@ rule "Connectivity supported"
 		$m: CarModel(bluetoothConnective)
 	then
 		insert( new Observation(ObservationType.CONNECTIVITY_SUPPORTED, $m) );
-		System.out.println($m + " is city friendly.");
+		System.out.println($m + " can connect to smart devices.");
 end;
 
 rule "Family friendly"
