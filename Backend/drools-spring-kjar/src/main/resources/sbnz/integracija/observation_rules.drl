@@ -1,0 +1,101 @@
+package sbnz.integracija;
+
+import kusljic.mihajlo.sbnz.spring.backend.facts.CarModel;
+import kusljic.mihajlo.sbnz.spring.backend.facts.CarType;
+import kusljic.mihajlo.sbnz.spring.backend.facts.Observation;
+import kusljic.mihajlo.sbnz.spring.backend.facts.ObservationType;
+import kusljic.mihajlo.sbnz.spring.backend.facts.FuelType;
+
+rule "Begginer friendly"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(type == CarType.MICRO || type == CarType.HATCHBACK,
+		havingParkingSensors, havingRearCamera, transmission == Transmission.AUTOMATIC)
+	then
+		insert( new Observation(ObservationType.BEGINNER_FRIENDLY, $m) );
+		System.out.println($m + " is begginer friendly.");
+end;
+
+rule "Cargo friendly"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(type == CarType.PICKUP || type == CarType.WAGON, bootCapacityLitres >= 3000)
+	then
+		insert( new Observation(ObservationType.CARGO_FRIENDLY, $m) );
+		System.out.println($m + " is cargo friendly.");
+end;
+
+rule "City friendly"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(type == CarType.MICRO || type == CarType.HATCHBACK || type == CarType.SEDAN, 
+		havingParkingSensors, havingRearCamera)
+	then
+		insert( new Observation(ObservationType.CITY_FRIENDLY, $m) );
+		System.out.println($m + " is city friendly.");
+end;
+
+rule "Connectivity supported"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(bluetoothConnective)
+	then
+		insert( new Observation(ObservationType.CONNECTIVITY_SUPPORTED, $m) );
+		System.out.println($m + " is city friendly.");
+end;
+
+rule "Family friendly"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(type == CarType.MINIVAN || type == CarType.HATCHBACK || type == CarType.SEDAN, 
+		bootCapacityLitres > 2000, seatsNumber >= 5, supportingChildSeatMounts, havingPassangerAirbags)
+	then
+		insert( new Observation(ObservationType.FAMILY_FRIENDLY, $m) );
+		System.out.println($m + " is family friendly.");
+end;
+
+rule "Offroad friendly"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(type == CarType.PICKUP || type == CarType.SUV, 
+		enginePowerBhp > 3500, mileage >= 100)
+	then
+		insert( new Observation(ObservationType.OFFROAD_FRIENDLY, $m) );
+		System.out.println($m + " is off-road friendly.");
+end;
+
+rule "Sport friendly"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(type == CarType.COUPE, topSpeedKmh > 220, enginePowerBhp > 400)
+	then
+		insert( new Observation(ObservationType.SPORT_FRIENDLY, $m) );
+		System.out.println($m + " is sport friendly.");
+end;
+
+rule "Travel friendly"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(bootCapacityLitres > 2000, mileage > 200, havingNavigationSystem)
+	then
+		insert( new Observation(ObservationType.TRAVEL_FRIENDLY, $m) );
+		System.out.println($m + " is travel friendly.");
+end;
+
+rule "Fuel efficient"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(fuelType == FuelType.ELECTRIC || fuelType == FuelType.HIBRID) // or displacement is low
+	then
+		insert( new Observation(ObservationType.FUEL_EFFICIENT, $m) );
+		System.out.println($m + " is fuel efficient.");
+end;
+
+rule "Low registration costs"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(type != CarType.COUPE, engineDisplacementCcm < 1500)
+	then
+		insert( new Observation(ObservationType.LOW_REGISTRATION_COSTS, $m) );
+		System.out.println($m + " has low registration costs.");
+end;
