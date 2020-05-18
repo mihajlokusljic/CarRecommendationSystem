@@ -4,6 +4,7 @@ public class Observation {
 	
 	private ObservationType type;
 	private CarModel carModel;
+	private double score;
 	
 	public Observation() {
 		super();
@@ -15,6 +16,13 @@ public class Observation {
 		this.carModel = carModel;
 	}
 	
+	public Observation(ObservationType type, CarModel carModel, double score) {
+		super();
+		this.type = type;
+		this.carModel = carModel;
+		this.score = score;
+	}
+
 	public ObservationType getType() {
 		return type;
 	}
@@ -26,6 +34,14 @@ public class Observation {
 	}
 	public void setCarModel(CarModel carModel) {
 		this.carModel = carModel;
+	}
+
+	public double getScore() {
+		return score;
+	}
+
+	public void setScore(double score) {
+		this.score = score;
 	}
 
 }

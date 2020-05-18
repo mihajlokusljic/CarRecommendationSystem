@@ -6,33 +6,88 @@ import kusljic.mihajlo.sbnz.spring.backend.facts.Observation;
 import kusljic.mihajlo.sbnz.spring.backend.facts.ObservationType;
 import kusljic.mihajlo.sbnz.spring.backend.facts.FuelType;
 
-rule "Begginer friendly"
+rule "Begginer friendly score 100"
 	agenda-group "global observations"
 	when 
 		$m: CarModel(type == CarType.MICRO || type == CarType.HATCHBACK,
-		havingParkingSensors, havingRearCamera, transmission == Transmission.AUTOMATIC)
+		havingParkingSensors, havingRearCamera, havingNavigationSystem, transmission == Transmission.AUTOMATIC)
+		not Observation(type == ObservationType.BEGINNER_FRIENDLY, carModel == $m, score >= 100)
 	then
-		insert( new Observation(ObservationType.BEGINNER_FRIENDLY, $m) );
+		insert( new Observation(ObservationType.BEGINNER_FRIENDLY, $m, 100) );
+		System.out.println($m + " is very begginer friendly.");
+end;
+
+rule "Begginer friendly score 70"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(type == CarType.MICRO || type == CarType.HATCHBACK,
+		havingParkingSensors, havingRearCamera)
+		not Observation(type == ObservationType.BEGINNER_FRIENDLY, carModel == $m, score >= 70)
+	then
+		insert( new Observation(ObservationType.BEGINNER_FRIENDLY, $m, 70) );
 		System.out.println($m + " is begginer friendly.");
 end;
 
-rule "Cargo friendly"
+rule "Begginer friendly score 40"
 	agenda-group "global observations"
 	when 
-		$m: CarModel(type == CarType.PICKUP || type == CarType.WAGON, bootCapacityLitres >= 3000)
+		$m: CarModel(type == CarType.MICRO || type == CarType.HATCHBACK)
+		not Observation(type == ObservationType.BEGINNER_FRIENDLY, carModel == $m, score >= 40)
 	then
-		insert( new Observation(ObservationType.CARGO_FRIENDLY, $m) );
+		insert( new Observation(ObservationType.BEGINNER_FRIENDLY, $m, 40) );
+		System.out.println($m + " is somewhat begginer friendly.");
+end;
+
+rule "Cargo friendly score 100"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(type == CarType.PICKUP || type == CarType.WAGON, bootCapacityLitres >= 900, enginePowerBhp >= 100)
+		not Observation(type == ObservationType.CARGO_FRIENDLY, carModel == $m, score >= 80)
+	then
+		insert( new Observation(ObservationType.CARGO_FRIENDLY, $m, 100) );
 		System.out.println($m + " is cargo friendly.");
 end;
 
-rule "City friendly"
+rule "Cargo friendly score 80"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(type == CarType.PICKUP || type == CarType.WAGON, bootCapacityLitres >= 900)
+		not Observation(type == ObservationType.CARGO_FRIENDLY, carModel == $m, score >= 80)
+	then
+		insert( new Observation(ObservationType.CARGO_FRIENDLY, $m, 80) );
+		System.out.println($m + " is cargo friendly.");
+end;
+
+rule "City friendly score 100"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(type == CarType.MICRO || type == CarType.HATCHBACK || type == CarType.SEDAN, 
+		havingParkingSensors, havingRearCamera, mileage >= 15)
+		not Observation(type == ObservationType.CITY_FRIENDLY, carModel == $m, score >= 100)
+	then
+		insert( new Observation(ObservationType.CITY_FRIENDLY, $m, 100) );
+		System.out.println($m + " is very city friendly.");
+end;
+
+rule "City friendly score 80"
 	agenda-group "global observations"
 	when 
 		$m: CarModel(type == CarType.MICRO || type == CarType.HATCHBACK || type == CarType.SEDAN, 
 		havingParkingSensors, havingRearCamera)
+		not Observation(type == ObservationType.CITY_FRIENDLY, carModel == $m, score >= 80)
 	then
-		insert( new Observation(ObservationType.CITY_FRIENDLY, $m) );
+		insert( new Observation(ObservationType.CITY_FRIENDLY, $m, 80) );
 		System.out.println($m + " is city friendly.");
+end;
+
+rule "City friendly score 40"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(type == CarType.MICRO || type == CarType.HATCHBACK || type == CarType.SEDAN)
+		not Observation(type == ObservationType.CITY_FRIENDLY, carModel == $m, score >= 40)
+	then
+		insert( new Observation(ObservationType.CITY_FRIENDLY, $m, 40) );
+		System.out.println($m + " is somewhat city friendly.");
 end;
 
 rule "Connectivity supported"
@@ -40,62 +95,127 @@ rule "Connectivity supported"
 	when 
 		$m: CarModel(bluetoothConnective)
 	then
-		insert( new Observation(ObservationType.CONNECTIVITY_SUPPORTED, $m) );
+		insert( new Observation(ObservationType.CONNECTIVITY_SUPPORTED, $m, 100) );
 		System.out.println($m + " can connect to smart devices.");
 end;
 
-rule "Family friendly"
+rule "Family friendly score 100"
 	agenda-group "global observations"
 	when 
 		$m: CarModel(type == CarType.MINIVAN || type == CarType.HATCHBACK || type == CarType.SEDAN, 
-		bootCapacityLitres > 2000, seatsNumber >= 5, supportingChildSeatMounts, havingPassangerAirbags)
+		bootCapacityLitres >= 400, seatsNumber >= 5, supportingChildSeatMounts, havingPassangerAirbags)
+		not Observation(type == ObservationType.FAMILY_FRIENDLY, carModel == $m, score >= 100)
 	then
-		insert( new Observation(ObservationType.FAMILY_FRIENDLY, $m) );
+		insert( new Observation(ObservationType.FAMILY_FRIENDLY, $m, 100) );
+		System.out.println($m + " is very family friendly.");
+end;
+
+rule "Family friendly score 80"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(bootCapacityLitres >= 400, seatsNumber >= 5, havingPassangerAirbags)
+		not Observation(type == ObservationType.FAMILY_FRIENDLY, carModel == $m, score >= 80)
+	then
+		insert( new Observation(ObservationType.FAMILY_FRIENDLY, $m, 80) );
 		System.out.println($m + " is family friendly.");
 end;
 
-rule "Offroad friendly"
+rule "Family friendly score 50"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(seatsNumber >= 5, havingPassangerAirbags)
+		not Observation(type == ObservationType.FAMILY_FRIENDLY, carModel == $m, score >= 50)
+	then
+		insert( new Observation(ObservationType.FAMILY_FRIENDLY, $m, 50) );
+		System.out.println($m + " is family friendly.");
+end;
+
+rule "Offroad friendly score 100"
 	agenda-group "global observations"
 	when 
 		$m: CarModel(type == CarType.PICKUP || type == CarType.SUV, 
-		enginePowerBhp > 3500, mileage >= 100)
+		enginePowerBhp > 150, fuelType == FuelType.DIESEL || fuelType == FuelType.PETROL)
+		not Observation(type == ObservationType.OFFROAD_FRIENDLY, carModel == $m, score >= 100)
 	then
-		insert( new Observation(ObservationType.OFFROAD_FRIENDLY, $m) );
+		insert( new Observation(ObservationType.OFFROAD_FRIENDLY, $m, 100) );
 		System.out.println($m + " is off-road friendly.");
+end;
+
+rule "Offroad friendly score 40"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(type == CarType.PICKUP || type == CarType.SUV)
+		not Observation(type == ObservationType.OFFROAD_FRIENDLY, carModel == $m, score >= 40)
+	then
+		insert( new Observation(ObservationType.OFFROAD_FRIENDLY, $m, 40) );
+		System.out.println($m + " is somewat off-road friendly.");
 end;
 
 rule "Sport friendly"
 	agenda-group "global observations"
 	when 
-		$m: CarModel(type == CarType.COUPE, topSpeedKmh > 220, enginePowerBhp > 400)
+		$m: CarModel(type == CarType.COUPE, topSpeedKmh > 250, enginePowerBhp >= 400)
 	then
-		insert( new Observation(ObservationType.SPORT_FRIENDLY, $m) );
+		insert( new Observation(ObservationType.SPORT_FRIENDLY, $m, 100) );
 		System.out.println($m + " is sport friendly.");
 end;
 
-rule "Travel friendly"
+rule "Travel friendly score 100"
 	agenda-group "global observations"
 	when 
-		$m: CarModel(bootCapacityLitres > 2000, mileage > 200, havingNavigationSystem)
+		$m: CarModel(type == CarType.MINIVAN,  bootCapacityLitres > 400, mileage > 20, havingNavigationSystem)
+		not Observation(type == ObservationType.TRAVEL_FRIENDLY, carModel == $m, score >= 100)
 	then
-		insert( new Observation(ObservationType.TRAVEL_FRIENDLY, $m) );
+		insert( new Observation(ObservationType.TRAVEL_FRIENDLY, $m, 100) );
+		System.out.println($m + " is very travel friendly.");
+end;
+
+rule "Travel friendly score 60"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(bootCapacityLitres > 400, mileage > 20)
+		not Observation(type == ObservationType.TRAVEL_FRIENDLY, carModel == $m, score >= 60)
+	then
+		insert( new Observation(ObservationType.TRAVEL_FRIENDLY, $m, 60) );
 		System.out.println($m + " is travel friendly.");
 end;
 
-rule "Fuel efficient"
+rule "Fuel efficient score 100"
 	agenda-group "global observations"
 	when 
-		$m: CarModel(fuelType == FuelType.ELECTRIC || fuelType == FuelType.HIBRID) // or displacement is low
+		$m: CarModel(fuelType == FuelType.ELECTRIC || fuelType == FuelType.HIBRID, 
+		mileage >= 20, engineDisplacementCcm <= 1500)
+		not Observation(type == ObservationType.FUEL_EFFICIENT, carModel == $m, score >= 100)
 	then
-		insert( new Observation(ObservationType.FUEL_EFFICIENT, $m) );
+		insert( new Observation(ObservationType.FUEL_EFFICIENT, $m, 100) );
+		System.out.println($m + " is very fuel efficient.");
+end;
+
+rule "Fuel efficient score 70"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(mileage >= 20, engineDisplacementCcm <= 1500)
+		not Observation(type == ObservationType.FUEL_EFFICIENT, carModel == $m, score >= 70)
+	then
+		insert( new Observation(ObservationType.FUEL_EFFICIENT, $m, 70) );
 		System.out.println($m + " is fuel efficient.");
+end;
+
+rule "Fuel efficient score 40"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(engineDisplacementCcm <= 1500)
+		not Observation(type == ObservationType.FUEL_EFFICIENT, carModel == $m, score >= 40)
+	then
+		insert( new Observation(ObservationType.FUEL_EFFICIENT, $m, 40) );
+		System.out.println($m + " is somewhat fuel efficient.");
 end;
 
 rule "Low registration costs"
 	agenda-group "global observations"
 	when 
-		$m: CarModel(type != CarType.COUPE, engineDisplacementCcm < 1500)
+		$m: CarModel(type != CarType.COUPE, engineDisplacementCcm <= 1500)
 	then
-		insert( new Observation(ObservationType.LOW_REGISTRATION_COSTS, $m) );
+		insert( new Observation(ObservationType.LOW_REGISTRATION_COSTS, $m, 100) );
 		System.out.println($m + " has low registration costs.");
 end;
