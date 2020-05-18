@@ -3,6 +3,7 @@ package kusljic.mihajlo.sbnz.spring.backend.service.impl;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
@@ -42,6 +43,11 @@ public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
 		Agenda agenda = this.kieSession.getAgenda();
 		agenda.getAgendaGroup("global observations").setFocus();
 		this.kieSession.fireAllRules();
+	}
+	
+	@PreDestroy
+	private void releaseSession() {
+		this.kieSession.dispose();
 	}
 
 }
