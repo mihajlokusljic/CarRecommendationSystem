@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import kusljic.mihajlo.sbnz.spring.backend.exception.EntityAlreadyExistsException;
@@ -71,6 +73,11 @@ public class CarManufacturerServiceImpl implements CarManufacturerService {
 		if(manufacturer.getCountryOfOrigin() == null) {
 			throw new InvalidFieldException("Manufacturer's country of origin is required");
 		}
+	}
+
+	@Override
+	public Page<CarManufacturer> findByPage(Pageable page) {
+		return this.carManufacturerRepository.findAll(page);
 	}
 
 }
