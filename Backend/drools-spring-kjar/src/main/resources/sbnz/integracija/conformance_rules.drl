@@ -1,0 +1,62 @@
+package sbnz.integracija;
+
+import kusljic.mihajlo.sbnz.spring.backend.facts.CarModel;
+import kusljic.mihajlo.sbnz.spring.backend.facts.Observation;
+import kusljic.mihajlo.sbnz.spring.backend.facts.RecommendationQuery;
+import kusljic.mihajlo.sbnz.spring.backend.facts.ObservationType;
+import kusljic.mihajlo.sbnz.spring.backend.facts.Conformance;
+import kusljic.mihajlo.sbnz.spring.backend.facts.ConformanceType;
+
+rule "Budget friendly score 100"
+	agenda-group "conformances to user"
+	when 
+		$rq: RecommendationQuery($budgetLimit: budget)
+		$m: CarModel(basePriceEuros <= $budgetLimit)
+		not Conformance(type == ConformanceType.BUDGET_FRIENDLY, carModel == $m, score >= 100)
+	then
+		insert( new Conformance(ConformanceType.BUDGET_FRIENDLY, $m, 100) );
+		System.out.println($m + " fits users budget.");
+end;
+
+rule "Budget friendly score 40"
+	agenda-group "conformances to user"
+	when 
+		$rq: RecommendationQuery($budgetLimit: budget)
+		$m: CarModel(basePriceEuros <= $budgetLimit * 1.1)
+		not Conformance(type == ConformanceType.BUDGET_FRIENDLY, carModel == $m, score >= 40)
+	then
+		insert( new Conformance(ConformanceType.BUDGET_FRIENDLY, $m, 40) );
+		System.out.println($m + " does not exceed users budget by more than 10%.");
+end;
+
+rule "Setisfies needs"
+	agenda-group "conformances to user"
+	when 
+		$rq: RecommendationQuery($begginer: beginner, $cargo: forCargoTransport, $city: forCityTraffic, $offroad: forOffroading,
+		$sport: forSport, $travel: forTravelling, $family: hasFamily, $connectivity: needsConnectivity)
+		and $m: CarModel()
+		and (exists Observation(type == ObservationType.BEGINNER_FRIENDLY, carModel == $m, $beginnerScore: score) or not $begginer)
+		and (exists Observation(type == ObservationType.CARGO_FRIENDLY, carModel == $m, $cargoScore: score) or not $cargo)
+		and (exists Observation(type == ObservationType.CITY_FRIENDLY, carModel == $m, $cityScore: score) or not $city)
+		and (exists Observation(type == ObservationType.CONNECTIVITY_SUPPORTED, carModel == $m, $connectivityScore: score) or not $connectivity)
+		and (exists Observation(type == ObservationType.FAMILY_FRIENDLY, carModel == $m, $familyScore: score) or not $family)
+		and (exists Observation(type == ObservationType.OFFROAD_FRIENDLY, carModel == $m, $offroadScore: score) or not $offroad)
+		and (exists Observation(type == ObservationType.SPORT_FRIENDLY, carModel == $m, $sportScore: score) or not $sport)
+		and (exists Observation(type == ObservationType.TRAVEL_FRIENDLY, carModel == $m, $travelScore: score) or not $travel)
+	then
+		// score will need to be adjusted
+		insert( new Conformance(ConformanceType.SATISFIES_NEEDS, $m, 100) );
+		System.out.println($m + " satisfies users needs.");
+end;
+
+rule "Maintenance friendly"
+	agenda-group "conformances to user"
+	when 
+		$m: CarModel()
+		and exists Observation(type == ObservationType.FUEL_EFFICIENT, carModel == $m, $fuelScore: score)
+		and exists Observation(type == ObservationType.LOW_REGISTRATION_COSTS, carModel == $m, $registrationScore: score)
+	then
+		insert( new Conformance(ConformanceType.MAINTENANCE_FRIENDLY, $m, ($fuelScore + $registrationScore) / 2) );
+		System.out.println($m + " satisfies users needs.");
+end;
+
