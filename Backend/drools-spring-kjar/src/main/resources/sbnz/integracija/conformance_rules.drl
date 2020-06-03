@@ -9,6 +9,7 @@ import kusljic.mihajlo.sbnz.spring.backend.facts.ConformanceType;
 
 rule "Budget friendly score 100"
 	agenda-group "conformances to user"
+	salience 3
 	when 
 		$rq: RecommendationQuery($budgetLimit: budget)
 		$m: CarModel(basePriceEuros <= $budgetLimit)
@@ -20,6 +21,7 @@ end;
 
 rule "Budget friendly score 40"
 	agenda-group "conformances to user"
+	salience 2
 	when 
 		$rq: RecommendationQuery($budgetLimit: budget)
 		$m: CarModel(basePriceEuros <= $budgetLimit * 1.1)
@@ -31,18 +33,18 @@ end;
 
 rule "Setisfies needs"
 	agenda-group "conformances to user"
+	salience 3
 	when 
-		$rq: RecommendationQuery($begginer: beginner, $cargo: forCargoTransport, $city: forCityTraffic, $offroad: forOffroading,
-		$sport: forSport, $travel: forTravelling, $family: hasFamily, $connectivity: needsConnectivity)
-		and $m: CarModel()
-		and (exists Observation(type == ObservationType.BEGINNER_FRIENDLY, carModel == $m, $beginnerScore: score) or not $begginer)
-		and (exists Observation(type == ObservationType.CARGO_FRIENDLY, carModel == $m, $cargoScore: score) or not $cargo)
-		and (exists Observation(type == ObservationType.CITY_FRIENDLY, carModel == $m, $cityScore: score) or not $city)
-		and (exists Observation(type == ObservationType.CONNECTIVITY_SUPPORTED, carModel == $m, $connectivityScore: score) or not $connectivity)
-		and (exists Observation(type == ObservationType.FAMILY_FRIENDLY, carModel == $m, $familyScore: score) or not $family)
-		and (exists Observation(type == ObservationType.OFFROAD_FRIENDLY, carModel == $m, $offroadScore: score) or not $offroad)
-		and (exists Observation(type == ObservationType.SPORT_FRIENDLY, carModel == $m, $sportScore: score) or not $sport)
-		and (exists Observation(type == ObservationType.TRAVEL_FRIENDLY, carModel == $m, $travelScore: score) or not $travel)
+		$m: CarModel()
+		(Observation(type == ObservationType.BEGINNER_FRIENDLY, carModel == $m, $beginnerScore: score) or RecommendationQuery(beginner == false))
+		(Observation(type == ObservationType.CARGO_FRIENDLY, carModel == $m, $cargoScore: score) or RecommendationQuery(forCargoTransport == false))
+		(Observation(type == ObservationType.CITY_FRIENDLY, carModel == $m, $cityScore: score) or RecommendationQuery(forCityTraffic == false))
+		(Observation(type == ObservationType.CONNECTIVITY_SUPPORTED, carModel == $m, $connectivityScore: score) or RecommendationQuery(needsConnectivity == false))
+		(Observation(type == ObservationType.FAMILY_FRIENDLY, carModel == $m, $familyScore: score) or RecommendationQuery(hasFamily == false))
+		(Observation(type == ObservationType.OFFROAD_FRIENDLY, carModel == $m, $offroadScore: score) or RecommendationQuery(forOffroading == false))
+		(Observation(type == ObservationType.SPORT_FRIENDLY, carModel == $m, $sportScore: score) or RecommendationQuery(forSport == false))
+		(Observation(type == ObservationType.TRAVEL_FRIENDLY, carModel == $m, $travelScore: score) or RecommendationQuery(forTravelling == false))
+		not Conformance(type == ConformanceType.SATISFIES_NEEDS, carModel == $m)
 	then
 		// score will need to be adjusted
 		insert( new Conformance(ConformanceType.SATISFIES_NEEDS, $m, 100) );
@@ -51,12 +53,14 @@ end;
 
 rule "Maintenance friendly"
 	agenda-group "conformances to user"
+	salience 3
 	when 
 		$m: CarModel()
-		and exists Observation(type == ObservationType.FUEL_EFFICIENT, carModel == $m, $fuelScore: score)
-		and exists Observation(type == ObservationType.LOW_REGISTRATION_COSTS, carModel == $m, $registrationScore: score)
+		Observation(type == ObservationType.FUEL_EFFICIENT, carModel == $m, $fuelScore: score)
+		Observation(type == ObservationType.LOW_REGISTRATION_COSTS, carModel == $m, $registrationScore: score)
+		not Conformance(type == ConformanceType.SATISFIES_NEEDS, carModel == $m)
 	then
 		insert( new Conformance(ConformanceType.MAINTENANCE_FRIENDLY, $m, ($fuelScore + $registrationScore) / 2) );
-		System.out.println($m + " satisfies users needs.");
+		System.out.println($m + " is maintenance friendly.");
 end;
 

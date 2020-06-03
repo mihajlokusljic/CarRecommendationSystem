@@ -8,11 +8,13 @@ import kusljic.mihajlo.sbnz.spring.backend.facts.Recommendation;
 
 rule "Highly recommend"
 	agenda-group "recommendations"
+	salience 3
 	when 
 		$m: CarModel()
-		and exists Conformance(type == ConformanceType.BUDGET_FRIENDLY, carModel == $m, $budgetScore: score)
-		and exists Conformance(type == ConformanceType.SATISFIES_NEEDS, carModel == $m, $needsScore: score)
-		and exists Conformance(type == ConformanceType.MAINTENANCE_FRIENDLY, carModel == $m, $maintenanceScore: score)
+		Conformance(type == ConformanceType.BUDGET_FRIENDLY, carModel == $m, $budgetScore: score)
+		Conformance(type == ConformanceType.SATISFIES_NEEDS, carModel == $m, $needsScore: score)
+		Conformance(type == ConformanceType.MAINTENANCE_FRIENDLY, carModel == $m, $maintenanceScore: score)
+		not Recommendation(carModel == $m, score >= 100)
 	then
 		// insert( new Recommendation($m, ($budgetScore + $needsScore + $maintenanceScore) / 3) );
 		insert( new Recommendation($m, 100) );
@@ -21,10 +23,12 @@ end;
 
 rule "Recommend"
 	agenda-group "recommendations"
+	salience 2
 	when 
 		$m: CarModel()
-		and exists Conformance(type == ConformanceType.BUDGET_FRIENDLY, carModel == $m, $budgetScore: score)
-		and exists Conformance(type == ConformanceType.SATISFIES_NEEDS, carModel == $m, $needsScore: score)
+		Conformance(type == ConformanceType.BUDGET_FRIENDLY, carModel == $m, $budgetScore: score)
+		Conformance(type == ConformanceType.SATISFIES_NEEDS, carModel == $m, $needsScore: score)
+		not Recommendation(carModel == $m, score >= 70)
 	then
 		insert( new Recommendation($m, 70) );
 		System.out.println($m + " is recommended");

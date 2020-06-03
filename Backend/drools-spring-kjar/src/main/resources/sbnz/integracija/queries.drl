@@ -1,0 +1,7 @@
+package sbnz.integracija;
+
+import kusljic.mihajlo.sbnz.spring.backend.facts.Recommendation;
+
+query "Fetch recommendations"
+	$r: Recommendation()
+end
