@@ -1,6 +1,11 @@
 package sbnz.integracija;
 
+import kusljic.mihajlo.sbnz.spring.backend.facts.Conformance;
 import kusljic.mihajlo.sbnz.spring.backend.facts.Recommendation;
+
+query "Fetch conformances"
+	$c: Conformance()
+end
 
 query "Fetch recommendations"
 	$r: Recommendation()

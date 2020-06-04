@@ -1,6 +1,7 @@
 package kusljic.mihajlo.sbnz.spring.backend.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,6 +13,7 @@ import org.kie.api.runtime.rule.FactHandle;
 import org.kie.api.runtime.rule.QueryResults;
 import org.kie.api.runtime.rule.QueryResultsRow;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import kusljic.mihajlo.sbnz.spring.backend.facts.CarModel;
@@ -21,6 +23,7 @@ import kusljic.mihajlo.sbnz.spring.backend.facts.RecommendationQuery;
 import kusljic.mihajlo.sbnz.spring.backend.service.CarModelService;
 import kusljic.mihajlo.sbnz.spring.backend.service.CountryService;
 import kusljic.mihajlo.sbnz.spring.backend.service.KnowledgeEngineService;
+import kusljic.mihajlo.sbnz.spring.backend.util.RecommendationComparator;
 
 @Service
 public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
@@ -31,6 +34,9 @@ public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
 	
 	@Autowired
 	private CountryService countryService;
+	
+	@Value("${maxRecommendatons}")
+	private Integer maxRecommendations;
 	
 	@Autowired
 	public KnowledgeEngineServiceImpl(KieContainer kieContainer, CarModelService carModelService) {
@@ -67,7 +73,6 @@ public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
 
 	@Override
 	public List<Recommendation> generateRecommendations(RecommendationQuery query) {
-		
 		// Insert the latest query data into session
 		FactHandle queryHandle = this.kieSession.insert(query);
 		
@@ -77,22 +82,34 @@ public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
 		agenda.getAgendaGroup("conformances to user").setFocus();
 		this.kieSession.fireAllRules();
 		
-		// Read generated recommendations and delete them so they don't polute next query results
+		// Read generated recommendations and delete them so they don't pollute next query results
 		List<Recommendation> result = new ArrayList<Recommendation>();
-		QueryResults results = kieSession.getQueryResults( "Fetch recommendations" );
-		System.out.println( "we have " + results.size() + " recommended car models:" );
+		QueryResults recommendations = this.kieSession.getQueryResults( "Fetch recommendations" );
+		System.out.println( "we have " + recommendations.size() + " recommended car models:" );
 
-		for ( QueryResultsRow row : results ) {
+		int recommendationsCount = 0;
+		for ( QueryResultsRow row : recommendations ) {
 			Recommendation rec = ( Recommendation ) row.get( "$r" );
-			result.add(rec);
-		    System.out.println(rec.getCarModel());
-		    this.kieSession.delete(row.getFactHandle("$r"));
+			
+			if (recommendationsCount < maxRecommendations) {
+				result.add(rec);
+				recommendationsCount++;
+				System.out.println(String.format("%d: %s", recommendationsCount, rec.getCarModel()));
+			}
+			
+			this.kieSession.delete(row.getFactHandle("$r"));
+		}
+		Collections.sort(result, new RecommendationComparator());
+		
+		// Read and delete generated conformances so that they don't pollute next query results
+		QueryResults conformances = this.kieSession.getQueryResults("Fetch conformances");
+		for ( QueryResultsRow row : conformances ) {
+			this.kieSession.delete(row.getFactHandle("$c"));
 		}
 		
 		// Remove query data from session so next query can be accepted
 		this.kieSession.delete(queryHandle);
 		
-		// TODO Auto-generated method stub
 		return result;
 	}
 
