@@ -54,6 +54,7 @@ public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
 		for (CarModel carModel : carModels) {
 			this.kieSession.insert(carModel);
 		}
+		System.out.println("Loaded car models.");
 		
 		// generate global observations about car models
 		Agenda agenda = this.kieSession.getAgenda();

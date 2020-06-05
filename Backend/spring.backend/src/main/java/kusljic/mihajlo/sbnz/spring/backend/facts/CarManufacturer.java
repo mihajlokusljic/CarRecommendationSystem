@@ -29,7 +29,7 @@ public class CarManufacturer {
 	@Column(name = "logo_image_path")
 	private String logoImagePath;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "country_id")
 	private Country countryOfOrigin;
 	

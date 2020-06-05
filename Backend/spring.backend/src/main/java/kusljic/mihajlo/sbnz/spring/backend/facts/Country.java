@@ -12,39 +12,47 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import kusljic.mihajlo.sbnz.spring.backend.util.DistanceCalculator;
+
 @Entity
 @Table(name = "country")
 public class Country {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "name", nullable = false)
 	private String name;
-	
+
 	@Column(name = "code")
 	private String code;
-	
+
 	@Column(name = "capital_latitude")
 	private Double capitalLatitude;
-	
+
 	@Column(name = "capital_longitude")
 	private double capitalLongitude;
-	
-	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "countryOfOrigin")
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST,
+			CascadeType.MERGE }, mappedBy = "countryOfOrigin")
 	private Set<CarManufacturer> basedManufacturers;
-	
+
 	public Country() {
 		super();
 	}
-	
+
 	public Country(String name, String code, double capitalLatitude, double capitalLongitude) {
 		super();
 		this.name = name;
 		this.code = code;
 		this.capitalLatitude = capitalLatitude;
 		this.capitalLongitude = capitalLongitude;
+	}
+
+	public double getDistanceTo(Country otherCountry) {
+		return DistanceCalculator.kilometerDistance(this.capitalLatitude, this.capitalLongitude,
+				otherCountry.capitalLatitude, otherCountry.capitalLongitude);
 	}
 
 	public Long getId() {
@@ -94,5 +102,5 @@ public class Country {
 	public void setBasedManufacturers(Set<CarManufacturer> basedManufacturers) {
 		this.basedManufacturers = basedManufacturers;
 	}
-	
+
 }

@@ -20,7 +20,7 @@ end;
 rule "Begginer friendly score 70"
 	agenda-group "global observations"
 	when 
-		$m: CarModel(type == CarType.MICRO || type == CarType.HATCHBACK,
+		$m: CarModel(type == CarType.MICRO || type == CarType.HATCHBACK || type == CarType.SEDAN,
 		havingParkingSensors, havingRearCamera)
 		not Observation(type == ObservationType.BEGINNER_FRIENDLY, carModel == $m, score >= 70)
 	then
@@ -31,7 +31,7 @@ end;
 rule "Begginer friendly score 40"
 	agenda-group "global observations"
 	when 
-		$m: CarModel(type == CarType.MICRO || type == CarType.HATCHBACK)
+		$m: CarModel(type == CarType.MICRO || type == CarType.HATCHBACK  || type == CarType.SEDAN)
 		not Observation(type == ObservationType.BEGINNER_FRIENDLY, carModel == $m, score >= 40)
 	then
 		insert( new Observation(ObservationType.BEGINNER_FRIENDLY, $m, 40) );
@@ -74,6 +74,16 @@ rule "City friendly score 80"
 	when 
 		$m: CarModel(type == CarType.MICRO || type == CarType.HATCHBACK || type == CarType.SEDAN, 
 		havingParkingSensors, havingRearCamera)
+		not Observation(type == ObservationType.CITY_FRIENDLY, carModel == $m, score >= 80)
+	then
+		insert( new Observation(ObservationType.CITY_FRIENDLY, $m, 80) );
+		System.out.println($m + " is city friendly.");
+end;
+
+rule "City friendly score 50"
+	agenda-group "global observations"
+	when 
+		$m: CarModel(havingParkingSensors, havingRearCamera)
 		not Observation(type == ObservationType.CITY_FRIENDLY, carModel == $m, score >= 80)
 	then
 		insert( new Observation(ObservationType.CITY_FRIENDLY, $m, 80) );
@@ -127,7 +137,7 @@ rule "Family friendly score 50"
 		not Observation(type == ObservationType.FAMILY_FRIENDLY, carModel == $m, score >= 50)
 	then
 		insert( new Observation(ObservationType.FAMILY_FRIENDLY, $m, 50) );
-		System.out.println($m + " is family friendly.");
+		System.out.println($m + " is smoewhat family friendly.");
 end;
 
 rule "Offroad friendly score 100"
@@ -148,7 +158,7 @@ rule "Offroad friendly score 40"
 		not Observation(type == ObservationType.OFFROAD_FRIENDLY, carModel == $m, score >= 40)
 	then
 		insert( new Observation(ObservationType.OFFROAD_FRIENDLY, $m, 40) );
-		System.out.println($m + " is somewat off-road friendly.");
+		System.out.println($m + " is somewhat off-road friendly.");
 end;
 
 rule "Sport friendly"
@@ -163,7 +173,7 @@ end;
 rule "Travel friendly score 100"
 	agenda-group "global observations"
 	when 
-		$m: CarModel(type == CarType.MINIVAN,  bootCapacityLitres > 400, mileage > 20, havingNavigationSystem)
+		$m: CarModel(type == CarType.MINIVAN || type == CarType.WAGON,  bootCapacityLitres > 400, mileage > 20, havingNavigationSystem)
 		not Observation(type == ObservationType.TRAVEL_FRIENDLY, carModel == $m, score >= 100)
 	then
 		insert( new Observation(ObservationType.TRAVEL_FRIENDLY, $m, 100) );

@@ -7,9 +7,10 @@ import kusljic.mihajlo.sbnz.spring.backend.facts.ObservationType;
 import kusljic.mihajlo.sbnz.spring.backend.facts.Conformance;
 import kusljic.mihajlo.sbnz.spring.backend.facts.ConformanceType;
 
+
 rule "Budget friendly score 100"
 	agenda-group "conformances to user"
-	salience 3
+	salience 4
 	when 
 		$rq: RecommendationQuery($budgetLimit: budget)
 		$m: CarModel(basePriceEuros <= $budgetLimit)
@@ -21,7 +22,7 @@ end;
 
 rule "Budget friendly score 40"
 	agenda-group "conformances to user"
-	salience 2
+	salience 3
 	when 
 		$rq: RecommendationQuery($budgetLimit: budget)
 		$m: CarModel(basePriceEuros <= $budgetLimit * 1.1)
@@ -31,9 +32,59 @@ rule "Budget friendly score 40"
 		System.out.println($m + " does not exceed users budget by more than 10%.");
 end;
 
-rule "Setisfies needs"
+rule "Servicing friendly score 100"
+	agenda-group "conformances to user"
+	salience 4
+	when
+		$rq: RecommendationQuery($country: usersCountry)
+		$m: CarModel(manufacturer.countryOfOrigin.getDistanceTo($country) == 0)
+		not Conformance(type == ConformanceType.SERVICING_FRIENLDY, carModel == $m, score >= 100)
+	then
+		insert( new Conformance(ConformanceType.SERVICING_FRIENLDY, $m, 100) );
+		System.out.println($m + " is very servicing friendly");
+end;
+
+rule "Servicing friendly score 70"
 	agenda-group "conformances to user"
 	salience 3
+	when
+		$rq: RecommendationQuery($country: usersCountry)
+		$m: CarModel(type != CarType.COUPE && type != CarType.SUV, manufacturer.countryOfOrigin.getDistanceTo($country) < 850)
+		not Conformance(type == ConformanceType.SERVICING_FRIENLDY, carModel == $m, score >= 70)
+	then
+		insert( new Conformance(ConformanceType.SERVICING_FRIENLDY, $m, 70) );
+		System.out.println($m + " is servicing friendly");
+end;
+
+rule "Servicing friendly score 40"
+	agenda-group "conformances to user"
+	salience 2
+	when
+		$rq: RecommendationQuery($country: usersCountry)
+		$m: CarModel(type != CarType.COUPE && type != CarType.SUV, manufacturer.countryOfOrigin.getDistanceTo($country) < 2000)
+		not Conformance(type == ConformanceType.SERVICING_FRIENLDY, carModel == $m, score >= 40)
+	then
+		insert( new Conformance(ConformanceType.SERVICING_FRIENLDY, $m, 40) );
+		System.out.println($m + " is somewhat servicing friendly");
+end;
+
+rule "Maintenance friendly score 100"
+	agenda-group "conformances to user"
+	salience 2
+	when 
+		$m: CarModel()
+		Observation(type == ObservationType.FUEL_EFFICIENT, carModel == $m, $fuelScore: score)
+		Observation(type == ObservationType.LOW_REGISTRATION_COSTS, carModel == $m, $registrationScore: score)
+		Conformance(type == ConformanceType.SERVICING_FRIENLDY, carModel == $m, $servicingScore: score)
+		not Conformance(type == ConformanceType.SATISFIES_NEEDS, carModel == $m, score >= 100)
+	then
+		insert( new Conformance(ConformanceType.MAINTENANCE_FRIENDLY, $m, ($fuelScore + $registrationScore + $servicingScore) / 3) );
+		System.out.println($m + " is very maintenance friendly.");
+end;
+
+rule "Setisfies needs"
+	agenda-group "conformances to user"
+	salience 1
 	when 
 		$m: CarModel()
 		(Observation(type == ObservationType.BEGINNER_FRIENDLY, carModel == $m, $beginnerScore: score) or RecommendationQuery(beginner == false))
@@ -50,17 +101,3 @@ rule "Setisfies needs"
 		insert( new Conformance(ConformanceType.SATISFIES_NEEDS, $m, 100) );
 		System.out.println($m + " satisfies users needs.");
 end;
-
-rule "Maintenance friendly"
-	agenda-group "conformances to user"
-	salience 3
-	when 
-		$m: CarModel()
-		Observation(type == ObservationType.FUEL_EFFICIENT, carModel == $m, $fuelScore: score)
-		Observation(type == ObservationType.LOW_REGISTRATION_COSTS, carModel == $m, $registrationScore: score)
-		not Conformance(type == ConformanceType.SATISFIES_NEEDS, carModel == $m)
-	then
-		insert( new Conformance(ConformanceType.MAINTENANCE_FRIENDLY, $m, ($fuelScore + $registrationScore) / 2) );
-		System.out.println($m + " is maintenance friendly.");
-end;
-
