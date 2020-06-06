@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kusljic.mihajlo.sbnz.spring.backend.dto.RecommendationDTO;
 import kusljic.mihajlo.sbnz.spring.backend.dto.RecommendationQueryDTO;
 import kusljic.mihajlo.sbnz.spring.backend.facts.Country;
+import kusljic.mihajlo.sbnz.spring.backend.facts.ObservationType;
 import kusljic.mihajlo.sbnz.spring.backend.facts.Recommendation;
 import kusljic.mihajlo.sbnz.spring.backend.facts.RecommendationQuery;
 import kusljic.mihajlo.sbnz.spring.backend.service.CountryService;
@@ -51,18 +52,33 @@ public class RecommendationController {
 		}
 		
 		
-		RecommendationQuery query = new RecommendationQuery();
-		query.setBeginner(queryDto.isBeginner());
-		query.setBudget(queryDto.getBudget());
-		query.setForCargoTransport(queryDto.isForCargoTransport());
-		query.setForCityTraffic(queryDto.isForCityTraffic());
-		query.setForOffroading(queryDto.isForOffroading());
-		query.setForSport(queryDto.isForSport());
-		query.setForTravelling(queryDto.isForTravelling());
-		query.setHasFamily(queryDto.isHasFamily());
-		query.setNeedsConnectivity(queryDto.isNeedsConnectivity());
-		query.setUsersCountry(userCountry);
-		return query;
+		ArrayList<ObservationType> requestedFeatures = new ArrayList<ObservationType>();
+		if (queryDto.isBeginner()) {
+			requestedFeatures.add(ObservationType.BEGINNER_FRIENDLY);
+		}
+		if (queryDto.isForCargoTransport()) {
+			requestedFeatures.add(ObservationType.CARGO_FRIENDLY);
+		}
+		if (queryDto.isForCityTraffic()) {
+			requestedFeatures.add(ObservationType.CITY_FRIENDLY);
+		}
+		if (queryDto.isForOffroading()) {
+			requestedFeatures.add(ObservationType.OFFROAD_FRIENDLY);
+		}
+		if (queryDto.isForSport()) {
+			requestedFeatures.add(ObservationType.SPORT_FRIENDLY);
+		}
+		if (queryDto.isForTravelling()) {
+			requestedFeatures.add(ObservationType.TRAVEL_FRIENDLY);
+		}
+		if (queryDto.isHasFamily()) {
+			requestedFeatures.add(ObservationType.FAMILY_FRIENDLY);
+		}
+		if (queryDto.isNeedsConnectivity()) {
+			requestedFeatures.add(ObservationType.CONNECTIVITY_SUPPORTED);
+		}
+		
+		return new RecommendationQuery(queryDto.getBudget(), userCountry, requestedFeatures);
 	}
 
 }

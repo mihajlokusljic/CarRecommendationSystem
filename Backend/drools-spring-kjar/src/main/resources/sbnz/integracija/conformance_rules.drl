@@ -1,5 +1,7 @@
 package sbnz.integracija;
 
+import java.util.ArrayList;
+
 import kusljic.mihajlo.sbnz.spring.backend.facts.CarModel;
 import kusljic.mihajlo.sbnz.spring.backend.facts.Observation;
 import kusljic.mihajlo.sbnz.spring.backend.facts.RecommendationQuery;
@@ -8,28 +10,21 @@ import kusljic.mihajlo.sbnz.spring.backend.facts.Conformance;
 import kusljic.mihajlo.sbnz.spring.backend.facts.ConformanceType;
 
 
-rule "Budget friendly score 100"
+rule "Budget friendly"
 	agenda-group "conformances to user"
 	salience 4
 	when 
 		$rq: RecommendationQuery($budgetLimit: budget)
-		$m: CarModel(basePriceEuros <= $budgetLimit)
-		not Conformance(type == ConformanceType.BUDGET_FRIENDLY, carModel == $m, score >= 100)
+		$m: CarModel($price: basePriceEuros <= $budgetLimit * 1.1)
 	then
-		insert( new Conformance(ConformanceType.BUDGET_FRIENDLY, $m, 100) );
-		System.out.println($m + " fits users budget.");
-end;
-
-rule "Budget friendly score 40"
-	agenda-group "conformances to user"
-	salience 3
-	when 
-		$rq: RecommendationQuery($budgetLimit: budget)
-		$m: CarModel(basePriceEuros <= $budgetLimit * 1.1)
-		not Conformance(type == ConformanceType.BUDGET_FRIENDLY, carModel == $m, score >= 40)
-	then
-		insert( new Conformance(ConformanceType.BUDGET_FRIENDLY, $m, 40) );
-		System.out.println($m + " does not exceed users budget by more than 10%.");
+		double overflow = $price - $budgetLimit;
+		if (overflow < 0) {
+			overflow = 0;
+		}
+		double overflowPercentage = overflow * 100 / $budgetLimit;
+		double score = 100 - overflowPercentage;
+		insert( new Conformance(ConformanceType.BUDGET_FRIENDLY, $m, score) );
+		System.out.println($m + " is budget friendly with score: " + score);
 end;
 
 rule "Servicing friendly score 100"
@@ -79,25 +74,24 @@ rule "Maintenance friendly score 100"
 		not Conformance(type == ConformanceType.SATISFIES_NEEDS, carModel == $m, score >= 100)
 	then
 		insert( new Conformance(ConformanceType.MAINTENANCE_FRIENDLY, $m, ($fuelScore + $registrationScore + $servicingScore) / 3) );
-		System.out.println($m + " is very maintenance friendly.");
+		System.out.println($m + " is maintenance friendly.");
 end;
 
 rule "Setisfies needs"
 	agenda-group "conformances to user"
 	salience 1
 	when 
+		RecommendationQuery($relevantObsTypes: requestedFeatures)
 		$m: CarModel()
-		(Observation(type == ObservationType.BEGINNER_FRIENDLY, carModel == $m, $beginnerScore: score) or RecommendationQuery(beginner == false))
-		(Observation(type == ObservationType.CARGO_FRIENDLY, carModel == $m, $cargoScore: score) or RecommendationQuery(forCargoTransport == false))
-		(Observation(type == ObservationType.CITY_FRIENDLY, carModel == $m, $cityScore: score) or RecommendationQuery(forCityTraffic == false))
-		(Observation(type == ObservationType.CONNECTIVITY_SUPPORTED, carModel == $m, $connectivityScore: score) or RecommendationQuery(needsConnectivity == false))
-		(Observation(type == ObservationType.FAMILY_FRIENDLY, carModel == $m, $familyScore: score) or RecommendationQuery(hasFamily == false))
-		(Observation(type == ObservationType.OFFROAD_FRIENDLY, carModel == $m, $offroadScore: score) or RecommendationQuery(forOffroading == false))
-		(Observation(type == ObservationType.SPORT_FRIENDLY, carModel == $m, $sportScore: score) or RecommendationQuery(forSport == false))
-		(Observation(type == ObservationType.TRAVEL_FRIENDLY, carModel == $m, $travelScore: score) or RecommendationQuery(forTravelling == false))
-		not Conformance(type == ConformanceType.SATISFIES_NEEDS, carModel == $m)
+		$relevantObs : ArrayList( size ==  $relevantObsTypes.size() ) from collect (
+		    Observation(carModel == $m, type memberOf $relevantObsTypes)
+		)
+		$score: Double() from accumulate( 
+			$obs: Observation() from $relevantObs, 
+			average($obs.getScore()) 
+		)
+		not Conformance(type == ConformanceType.SATISFIES_NEEDS, carModel == $m, score >= $score)
 	then
-		// score will need to be adjusted
-		insert( new Conformance(ConformanceType.SATISFIES_NEEDS, $m, 100) );
-		System.out.println($m + " satisfies users needs.");
+		insert( new Conformance(ConformanceType.SATISFIES_NEEDS, $m, $score) );
+		System.out.println($m + " satisfies users needs with score: " + $score);
 end;

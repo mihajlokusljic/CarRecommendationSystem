@@ -14,10 +14,10 @@ rule "Highly recommend"
 		Conformance(type == ConformanceType.BUDGET_FRIENDLY, carModel == $m, $budgetScore: score)
 		Conformance(type == ConformanceType.SATISFIES_NEEDS, carModel == $m, $needsScore: score)
 		Conformance(type == ConformanceType.MAINTENANCE_FRIENDLY, carModel == $m, $maintenanceScore: score)
-		not Recommendation(carModel == $m, score >= 100)
+		not Recommendation(carModel == $m)
 	then
-		insert( new Recommendation($m, ($budgetScore + $needsScore + $maintenanceScore) / 3) );
-		// insert( new Recommendation($m, 100) );
+		double score = 0.45 * $budgetScore + 0.40 * $needsScore + 0.15 * $maintenanceScore;
+		insert( new Recommendation($m, score) );
 		System.out.println($m + " is recommended");
 end;
 
@@ -28,8 +28,9 @@ rule "Recommend"
 		$m: CarModel()
 		Conformance(type == ConformanceType.BUDGET_FRIENDLY, carModel == $m, $budgetScore: score)
 		Conformance(type == ConformanceType.SATISFIES_NEEDS, carModel == $m, $needsScore: score)
-		not Recommendation(carModel == $m, score >= 70)
+		not Recommendation(carModel == $m)
 	then
-		insert( new Recommendation($m, 70) );
+		double score = 0.45 * $budgetScore + 0.40 * $needsScore;
+		insert( new Recommendation($m, score) );
 		System.out.println($m + " is recommended");
 end;
