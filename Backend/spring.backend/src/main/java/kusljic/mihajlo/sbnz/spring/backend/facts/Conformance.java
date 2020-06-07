@@ -1,32 +1,26 @@
 package kusljic.mihajlo.sbnz.spring.backend.facts;
 
-public class Observation {
+public class Conformance {
 	
+	private ConformanceType type;
 	private CarModel carModel;
 	private double score;
-	private ObservationType type;
 	
-	public Observation() {
+	public Conformance() {
 		super();
 	}
 	
-	public Observation(ObservationType type, CarModel carModel) {
-		super();
-		this.type = type;
-		this.carModel = carModel;
-	}
-	
-	public Observation(ObservationType type, CarModel carModel, double score) {
+	public Conformance(ConformanceType type, CarModel carModel, double score) {
 		super();
 		this.type = type;
 		this.carModel = carModel;
 		this.score = score;
 	}
-
-	public ObservationType getType() {
+	
+	public ConformanceType getType() {
 		return type;
 	}
-	public void setType(ObservationType type) {
+	public void setType(ConformanceType type) {
 		this.type = type;
 	}
 	public CarModel getCarModel() {
@@ -35,11 +29,9 @@ public class Observation {
 	public void setCarModel(CarModel carModel) {
 		this.carModel = carModel;
 	}
-
 	public double getScore() {
 		return score;
 	}
-
 	public void setScore(double score) {
 		this.score = score;
 	}

@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="450mm" xmlns="http://www.w3.org/2000/svg" height="257mm" version="1.1" viewBox="0 0 1704 973" xmlns:xlink="http://www.w3.org/1999/xlink">
+   <polyline fill="none" points="912,573 1073,573 1073,571 1099,571" stroke="#0080ff" stroke-width="1"/>
+   <text x="958" y="571" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">*</text>
+   <text x="958" y="581" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">carModels</text>
+   <text x="1041" y="569" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">1..1</text>
+   <text x="1041" y="579" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">manufacturer</text>
+   <polyline fill="none" points="1234,573 1458,573" stroke="#0080ff" stroke-width="1"/>
+   <text x="1301" y="570" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">*</text>
+   <text x="1301" y="580" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">basedManufacturers</text>
+   <text x="1396" y="570" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">1..1</text>
+   <text x="1396" y="580" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">countryOfOrigin</text>
+   <polyline fill="none" points="461,473 689,473" stroke="#0080ff" stroke-width="1"/>
+   <polyline fill="none" points="667,477 680,473 667,469" stroke="#0080ff" stroke-width="1"/>
+   <text x="488" y="468" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">*</text>
+   <text x="637" y="470" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">1..1</text>
+   <text x="637" y="480" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">carModel</text>
+   <polyline fill="none" points="455,625 568,625 568,625 689,625" stroke="#0080ff" stroke-width="1"/>
+   <polyline fill="none" points="667,629 680,625 667,621" stroke="#0080ff" stroke-width="1"/>
+   <text x="477" y="620" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">*</text>
+   <text x="637" y="623" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">1..1</text>
+   <text x="637" y="633" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">carModel</text>
+   <polyline fill="none" points="450,727 702,727" stroke="#0080ff" stroke-width="1"/>
+   <polyline fill="none" points="667,731 680,727 667,723" stroke="#0080ff" stroke-width="1"/>
+   <text x="478" y="722" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">*</text>
+   <text x="637" y="724" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">1..1</text>
+   <text x="637" y="734" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">carModel</text>
+   <polyline fill="none" points="443,328 1589,328 1589,524" stroke="#0080ff" stroke-width="1"/>
+   <polyline fill="none" points="1585,498 1589,511 1593,498" stroke="#0080ff" stroke-width="1"/>
+   <text x="583" y="323" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">*</text>
+   <text x="1555" y="493" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">1..*</text>
+   <text x="1555" y="503" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">usersCountry</text>
+   <defs>
+      <linearGradient id="Gradient1" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="680" y="421" fill="url(#Gradient1)" width="234" height="334" stroke="#0080ff" stroke-width="1"/>
+   <text x="796" y="432" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">CarModel</text>
+   <line x1="680" x2="914" y1="440" y2="440" stroke="#0080ff" stroke-width="1"/>
+   <text x="684" y="450" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="463" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="476" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="489" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="502" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="515" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="528" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="541" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="554" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="567" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="580" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="593" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="606" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="619" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="632" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="645" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="658" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="670" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="683" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="696" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="695" y="450" fill="#000000" font-size="10" font-family="Arial">id</text>
+   <text x="695" y="463" fill="#000000" font-size="10" font-family="Arial">basePriceEuros</text>
+   <text x="695" y="476" fill="#000000" font-size="10" font-family="Arial">bluetoothConnective</text>
+   <text x="695" y="489" fill="#000000" font-size="10" font-family="Arial">bootCapacityLitres</text>
+   <text x="695" y="502" fill="#000000" font-size="10" font-family="Arial">doorsNumber</text>
+   <text x="695" y="515" fill="#000000" font-size="10" font-family="Arial">engineDisplacementCcm</text>
+   <text x="695" y="528" fill="#000000" font-size="10" font-family="Arial">enginePowerBhp</text>
+   <text x="695" y="541" fill="#000000" font-size="10" font-family="Arial">fuelType</text>
+   <text x="695" y="554" fill="#000000" font-size="10" font-family="Arial">havingNavigationSystem</text>
+   <text x="695" y="567" fill="#000000" font-size="10" font-family="Arial">havingParkingSensors</text>
+   <text x="695" y="580" fill="#000000" font-size="10" font-family="Arial">havingPassangerAirbags</text>
+   <text x="695" y="593" fill="#000000" font-size="10" font-family="Arial">havingRearCamera</text>
+   <text x="695" y="606" fill="#000000" font-size="10" font-family="Arial">imagePath</text>
+   <text x="695" y="619" fill="#000000" font-size="10" font-family="Arial">mileage</text>
+   <text x="695" y="632" fill="#000000" font-size="10" font-family="Arial">name</text>
+   <text x="695" y="645" fill="#000000" font-size="10" font-family="Arial">seatsNumber</text>
+   <text x="695" y="658" fill="#000000" font-size="10" font-family="Arial">supportingChildSeatMounts</text>
+   <text x="695" y="670" fill="#000000" font-size="10" font-family="Arial">topSpeedKmh</text>
+   <text x="695" y="683" fill="#000000" font-size="10" font-family="Arial">transmission</text>
+   <text x="695" y="696" fill="#000000" font-size="10" font-family="Arial">type</text>
+   <text x="833" y="450" fill="#000000" font-size="10" font-family="Arial">: Long</text>
+   <text x="833" y="463" fill="#000000" font-size="10" font-family="Arial">: int</text>
+   <text x="833" y="476" fill="#000000" font-size="10" font-family="Arial">: boolean</text>
+   <text x="833" y="489" fill="#000000" font-size="10" font-family="Arial">: int</text>
+   <text x="833" y="502" fill="#000000" font-size="10" font-family="Arial">: int</text>
+   <text x="833" y="515" fill="#000000" font-size="10" font-family="Arial">: int</text>
+   <text x="833" y="528" fill="#000000" font-size="10" font-family="Arial">: double</text>
+   <text x="833" y="541" fill="#000000" font-size="10" font-family="Arial">: FuelType</text>
+   <text x="833" y="554" fill="#000000" font-size="10" font-family="Arial">: boolean</text>
+   <text x="833" y="567" fill="#000000" font-size="10" font-family="Arial">: boolean</text>
+   <text x="833" y="580" fill="#000000" font-size="10" font-family="Arial">: boolean</text>
+   <text x="833" y="593" fill="#000000" font-size="10" font-family="Arial">: boolean</text>
+   <text x="833" y="606" fill="#000000" font-size="10" font-family="Arial">: String</text>
+   <text x="833" y="619" fill="#000000" font-size="10" font-family="Arial">: double</text>
+   <text x="833" y="632" fill="#000000" font-size="10" font-family="Arial">: String</text>
+   <text x="833" y="645" fill="#000000" font-size="10" font-family="Arial">: int</text>
+   <text x="833" y="658" fill="#000000" font-size="10" font-family="Arial">: boolean</text>
+   <text x="833" y="670" fill="#000000" font-size="10" font-family="Arial">: int</text>
+   <text x="833" y="683" fill="#000000" font-size="10" font-family="Arial">: Transmission</text>
+   <text x="833" y="696" fill="#000000" font-size="10" font-family="Arial">: CarType</text>
+   <line x1="680" x2="914" y1="703" y2="703" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient2" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="742" y="808" fill="url(#Gradient2)" width="160" height="107" stroke="#0080ff" stroke-width="1"/>
+   <text x="821" y="817" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">&lt;&lt;Enum&gt;&gt;</text>
+   <text x="821" y="832" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">FuelType</text>
+   <line x1="742" x2="902" y1="840" y2="840" stroke="#0080ff" stroke-width="1"/>
+   <text x="746" y="850" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="746" y="863" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="746" y="876" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="746" y="889" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="757" y="850" fill="#000000" font-size="10" font-family="Arial">DIESEL</text>
+   <text x="757" y="863" fill="#000000" font-size="10" font-family="Arial">ELECTRIC</text>
+   <text x="757" y="876" fill="#000000" font-size="10" font-family="Arial">HIBRID</text>
+   <text x="757" y="889" fill="#000000" font-size="10" font-family="Arial">PETROL</text>
+   <text x="816" y="850" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="816" y="863" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="816" y="876" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="816" y="889" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <line x1="742" x2="902" y1="896" y2="896" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient3" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="957" y="807" fill="url(#Gradient3)" width="171" height="81" stroke="#0080ff" stroke-width="1"/>
+   <text x="1041" y="816" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">&lt;&lt;Enum&gt;&gt;</text>
+   <text x="1041" y="831" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">Transmission</text>
+   <line x1="957" x2="1128" y1="839" y2="839" stroke="#0080ff" stroke-width="1"/>
+   <text x="961" y="849" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="961" y="862" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="972" y="849" fill="#000000" font-size="10" font-family="Arial">AUTOMATIC</text>
+   <text x="972" y="862" fill="#000000" font-size="10" font-family="Arial">MANUAL</text>
+   <text x="1041" y="849" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="1041" y="862" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <line x1="957" x2="1128" y1="869" y2="869" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient4" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="529" y="812" fill="url(#Gradient4)" width="172" height="159" stroke="#0080ff" stroke-width="1"/>
+   <text x="614" y="821" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">&lt;&lt;Enum&gt;&gt;</text>
+   <text x="614" y="836" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">CarType</text>
+   <line x1="529" x2="701" y1="844" y2="844" stroke="#0080ff" stroke-width="1"/>
+   <text x="533" y="854" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="533" y="867" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="533" y="880" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="533" y="893" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="533" y="906" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="533" y="919" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="533" y="932" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="533" y="945" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="544" y="854" fill="#000000" font-size="10" font-family="Arial">COUPE</text>
+   <text x="544" y="867" fill="#000000" font-size="10" font-family="Arial">HATCHBACK</text>
+   <text x="544" y="880" fill="#000000" font-size="10" font-family="Arial">MICRO</text>
+   <text x="544" y="893" fill="#000000" font-size="10" font-family="Arial">MINIVAN</text>
+   <text x="544" y="906" fill="#000000" font-size="10" font-family="Arial">PICKUP</text>
+   <text x="544" y="919" fill="#000000" font-size="10" font-family="Arial">SEDAN</text>
+   <text x="544" y="932" fill="#000000" font-size="10" font-family="Arial">SUV</text>
+   <text x="544" y="945" fill="#000000" font-size="10" font-family="Arial">WAGON</text>
+   <text x="614" y="854" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="614" y="867" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="614" y="880" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="614" y="893" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="614" y="906" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="614" y="919" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="614" y="932" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="614" y="945" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <line x1="529" x2="701" y1="952" y2="952" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient5" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="1093" y="524" fill="url(#Gradient5)" width="141" height="81" stroke="#0080ff" stroke-width="1"/>
+   <text x="1162" y="535" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">CarManufacturer</text>
+   <line x1="1093" x2="1234" y1="543" y2="543" stroke="#0080ff" stroke-width="1"/>
+   <text x="1097" y="553" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="1097" y="566" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="1097" y="579" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="1108" y="553" fill="#000000" font-size="10" font-family="Arial">id</text>
+   <text x="1108" y="566" fill="#000000" font-size="10" font-family="Arial">name</text>
+   <text x="1108" y="579" fill="#000000" font-size="10" font-family="Arial">logoImagePath</text>
+   <text x="1189" y="553" fill="#000000" font-size="10" font-family="Arial">: Long</text>
+   <text x="1189" y="566" fill="#000000" font-size="10" font-family="Arial">: String</text>
+   <text x="1189" y="579" fill="#000000" font-size="10" font-family="Arial">: String</text>
+   <line x1="1093" x2="1234" y1="586" y2="586" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient6" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="1454" y="511" fill="url(#Gradient6)" width="248" height="107" stroke="#0080ff" stroke-width="1"/>
+   <text x="1577" y="522" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">Country</text>
+   <line x1="1454" x2="1702" y1="530" y2="530" stroke="#0080ff" stroke-width="1"/>
+   <text x="1458" y="540" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="1458" y="553" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="1458" y="566" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="1458" y="579" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="1458" y="592" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="1469" y="540" fill="#000000" font-size="10" font-family="Arial">id</text>
+   <text x="1469" y="553" fill="#000000" font-size="10" font-family="Arial">name</text>
+   <text x="1469" y="566" fill="#000000" font-size="10" font-family="Arial">code</text>
+   <text x="1469" y="579" fill="#000000" font-size="10" font-family="Arial">capitalLatitude</text>
+   <text x="1469" y="592" fill="#000000" font-size="10" font-family="Arial">capitalLongitude</text>
+   <text x="1557" y="540" fill="#000000" font-size="10" font-family="Arial">: Long</text>
+   <text x="1557" y="553" fill="#000000" font-size="10" font-family="Arial">: String</text>
+   <text x="1557" y="566" fill="#000000" font-size="10" font-family="Arial">: String</text>
+   <text x="1557" y="579" fill="#000000" font-size="10" font-family="Arial">: double</text>
+   <text x="1557" y="592" fill="#000000" font-size="10" font-family="Arial">: double</text>
+   <line x1="1454" x2="1702" y1="599" y2="599" stroke="#0080ff" stroke-width="1"/>
+   <text x="1458" y="609" fill="#000000" font-size="10" font-family="Arial">+</text>
+   <text x="1472" y="609" fill="#000000" font-size="10" font-family="Arial">getDistanceTo (Country otherCountry)</text>
+   <text x="1655" y="609" fill="#000000" font-size="10" font-family="Arial">: double</text>
+   <defs>
+      <linearGradient id="Gradient7" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="323" y="435" fill="url(#Gradient7)" width="143" height="68" stroke="#0080ff" stroke-width="1"/>
+   <text x="393" y="446" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">Observation</text>
+   <line x1="323" x2="466" y1="454" y2="454" stroke="#0080ff" stroke-width="1"/>
+   <text x="327" y="464" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="327" y="477" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="338" y="464" fill="#000000" font-size="10" font-family="Arial">score</text>
+   <text x="338" y="477" fill="#000000" font-size="10" font-family="Arial">type</text>
+   <text x="370" y="464" fill="#000000" font-size="10" font-family="Arial">: double</text>
+   <text x="370" y="477" fill="#000000" font-size="10" font-family="Arial">: ObservationType</text>
+   <line x1="323" x2="466" y1="484" y2="484" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient8" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="2" y="321" fill="url(#Gradient8)" width="260" height="184" stroke="#0080ff" stroke-width="1"/>
+   <text x="131" y="330" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">&lt;&lt;Enum&gt;&gt;</text>
+   <text x="131" y="345" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">ObservationType</text>
+   <line x1="2" x2="262" y1="353" y2="353" stroke="#0080ff" stroke-width="1"/>
+   <text x="6" y="363" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="6" y="376" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="6" y="389" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="6" y="402" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="6" y="415" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="6" y="428" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="6" y="441" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="6" y="454" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="6" y="466" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="6" y="479" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="17" y="363" fill="#000000" font-size="10" font-family="Arial">BEGINNER_FRIENDLY</text>
+   <text x="17" y="376" fill="#000000" font-size="10" font-family="Arial">CARGO_FRIENDLY</text>
+   <text x="17" y="389" fill="#000000" font-size="10" font-family="Arial">CITY_FRIENDLY</text>
+   <text x="17" y="402" fill="#000000" font-size="10" font-family="Arial">CONNECTIVITY_SUPPORTED</text>
+   <text x="17" y="415" fill="#000000" font-size="10" font-family="Arial">FAMILY_FRIENDLY</text>
+   <text x="17" y="428" fill="#000000" font-size="10" font-family="Arial">OFFROAD_FRIENDLY</text>
+   <text x="17" y="441" fill="#000000" font-size="10" font-family="Arial">SPORT_FRIENDLY</text>
+   <text x="17" y="454" fill="#000000" font-size="10" font-family="Arial">TRAVEL_FRIENDLY</text>
+   <text x="17" y="466" fill="#000000" font-size="10" font-family="Arial">FUEL_EFFICIENT</text>
+   <text x="17" y="479" fill="#000000" font-size="10" font-family="Arial">LOW_REGISTRATION_COSTS</text>
+   <text x="173" y="363" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="173" y="376" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="173" y="389" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="173" y="402" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="173" y="415" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="173" y="428" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="173" y="441" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="173" y="454" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="173" y="466" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="173" y="479" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <line x1="2" x2="262" y1="486" y2="486" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient9" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="325" y="593" fill="url(#Gradient9)" width="130" height="68" stroke="#0080ff" stroke-width="1"/>
+   <text x="389" y="604" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">Conformance</text>
+   <line x1="325" x2="455" y1="612" y2="612" stroke="#0080ff" stroke-width="1"/>
+   <text x="329" y="622" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="329" y="635" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="340" y="622" fill="#000000" font-size="10" font-family="Arial">score</text>
+   <text x="340" y="635" fill="#000000" font-size="10" font-family="Arial">type</text>
+   <text x="372" y="622" fill="#000000" font-size="10" font-family="Arial">: double</text>
+   <text x="372" y="635" fill="#000000" font-size="10" font-family="Arial">: ConformanceType</text>
+   <line x1="325" x2="455" y1="642" y2="642" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient10" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="3" y="554" fill="url(#Gradient10)" width="260" height="107" stroke="#0080ff" stroke-width="1"/>
+   <text x="132" y="563" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">&lt;&lt;Enum&gt;&gt;</text>
+   <text x="132" y="578" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">ConformanceType</text>
+   <line x1="3" x2="263" y1="586" y2="586" stroke="#0080ff" stroke-width="1"/>
+   <text x="7" y="596" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="7" y="609" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="7" y="622" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="7" y="635" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="18" y="596" fill="#000000" font-size="10" font-family="Arial">BUDGET_FRIENDLY</text>
+   <text x="18" y="609" fill="#000000" font-size="10" font-family="Arial">SATISFIES_NEEDS</text>
+   <text x="18" y="622" fill="#000000" font-size="10" font-family="Arial">SERVICING_FRIENLDY</text>
+   <text x="18" y="635" fill="#000000" font-size="10" font-family="Arial">MAINTENANCE_FRIENDLY</text>
+   <text x="156" y="596" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="156" y="609" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="156" y="622" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <text x="156" y="635" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <line x1="3" x2="263" y1="642" y2="642" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient11" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="329" y="706" fill="url(#Gradient11)" width="127" height="55" stroke="#0080ff" stroke-width="1"/>
+   <text x="392" y="717" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">Recommendation</text>
+   <line x1="329" x2="456" y1="725" y2="725" stroke="#0080ff" stroke-width="1"/>
+   <text x="333" y="735" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="344" y="735" fill="#000000" font-size="10" font-family="Arial">score</text>
+   <text x="376" y="735" fill="#000000" font-size="10" font-family="Arial">: double</text>
+   <line x1="329" x2="456" y1="742" y2="742" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient12" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="326" y="294" fill="url(#Gradient12)" width="235" height="68" stroke="#0080ff" stroke-width="1"/>
+   <text x="442" y="305" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">RecommendationQuery</text>
+   <line x1="326" x2="561" y1="313" y2="313" stroke="#0080ff" stroke-width="1"/>
+   <text x="330" y="323" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="330" y="336" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="341" y="323" fill="#000000" font-size="10" font-family="Arial">budget</text>
+   <text x="341" y="336" fill="#000000" font-size="10" font-family="Arial">requestedFeatures</text>
+   <text x="435" y="323" fill="#000000" font-size="10" font-family="Arial">: double</text>
+   <text x="435" y="336" fill="#000000" font-size="10" font-family="Arial">: List&lt;ObservationType&gt;</text>
+   <line x1="326" x2="561" y1="343" y2="343" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient13" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="509" y="2" fill="url(#Gradient13)" width="147" height="107" stroke="#0080ff" stroke-width="1"/>
+   <text x="582" y="13" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">AppUser</text>
+   <line x1="509" x2="656" y1="21" y2="21" stroke="#0080ff" stroke-width="1"/>
+   <text x="513" y="31" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="513" y="44" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="513" y="57" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="513" y="70" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="513" y="83" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="524" y="31" fill="#000000" font-size="10" font-family="Arial">id</text>
+   <text x="524" y="44" fill="#000000" font-size="10" font-family="Arial">username</text>
+   <text x="524" y="57" fill="#000000" font-size="10" font-family="Arial">passwordHash</text>
+   <text x="524" y="70" fill="#000000" font-size="10" font-family="Arial">fullName</text>
+   <text x="524" y="83" fill="#000000" font-size="10" font-family="Arial">role</text>
+   <text x="597" y="31" fill="#000000" font-size="10" font-family="Arial">: Long</text>
+   <text x="597" y="44" fill="#000000" font-size="10" font-family="Arial">: String</text>
+   <text x="597" y="57" fill="#000000" font-size="10" font-family="Arial">: String</text>
+   <text x="597" y="70" fill="#000000" font-size="10" font-family="Arial">: String</text>
+   <text x="597" y="83" fill="#000000" font-size="10" font-family="Arial">: UserRole</text>
+   <line x1="509" x2="656" y1="90" y2="90" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient14" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="186" y="20" fill="url(#Gradient14)" width="195" height="68" stroke="#0080ff" stroke-width="1"/>
+   <text x="282" y="29" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">&lt;&lt;Enum&gt;&gt;</text>
+   <text x="282" y="44" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">UserRole</text>
+   <line x1="186" x2="381" y1="52" y2="52" stroke="#0080ff" stroke-width="1"/>
+   <text x="190" y="62" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="201" y="62" fill="#000000" font-size="10" font-family="Arial">ADMINISTRATOR</text>
+   <text x="294" y="62" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
+   <line x1="186" x2="381" y1="69" y2="69" stroke="#0080ff" stroke-width="1"/>
+</svg>

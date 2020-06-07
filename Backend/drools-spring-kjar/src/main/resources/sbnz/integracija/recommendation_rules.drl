@@ -1,0 +1,36 @@
+package sbnz.integracija;
+
+import kusljic.mihajlo.sbnz.spring.backend.facts.CarModel;
+import kusljic.mihajlo.sbnz.spring.backend.facts.RecommendationQuery;
+import kusljic.mihajlo.sbnz.spring.backend.facts.Conformance;
+import kusljic.mihajlo.sbnz.spring.backend.facts.ConformanceType;
+import kusljic.mihajlo.sbnz.spring.backend.facts.Recommendation;
+
+rule "Highly recommend"
+	agenda-group "recommendations"
+	salience 3
+	when 
+		$m: CarModel()
+		Conformance(type == ConformanceType.BUDGET_FRIENDLY, carModel == $m, $budgetScore: score)
+		Conformance(type == ConformanceType.SATISFIES_NEEDS, carModel == $m, $needsScore: score)
+		Conformance(type == ConformanceType.MAINTENANCE_FRIENDLY, carModel == $m, $maintenanceScore: score)
+		not Recommendation(carModel == $m)
+	then
+		double score = 0.45 * $budgetScore + 0.40 * $needsScore + 0.15 * $maintenanceScore;
+		insert( new Recommendation($m, score) );
+		System.out.println($m + " is recommended");
+end;
+
+rule "Recommend"
+	agenda-group "recommendations"
+	salience 2
+	when 
+		$m: CarModel()
+		Conformance(type == ConformanceType.BUDGET_FRIENDLY, carModel == $m, $budgetScore: score)
+		Conformance(type == ConformanceType.SATISFIES_NEEDS, carModel == $m, $needsScore: score)
+		not Recommendation(carModel == $m)
+	then
+		double score = 0.45 * $budgetScore + 0.40 * $needsScore;
+		insert( new Recommendation($m, score) );
+		System.out.println($m + " is recommended");
+end;
