@@ -2,9 +2,9 @@ package kusljic.mihajlo.sbnz.spring.backend.facts;
 
 public class Observation {
 	
-	private ObservationType type;
 	private CarModel carModel;
 	private double score;
+	private ObservationType type;
 	
 	public Observation() {
 		super();

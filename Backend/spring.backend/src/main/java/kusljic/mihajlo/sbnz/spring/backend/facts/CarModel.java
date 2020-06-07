@@ -54,6 +54,9 @@ public class CarModel {
 	@Column(name = "rear_camera", nullable = false)
 	private boolean havingRearCamera;
 	
+	@Column(name = "image_path", nullable = true)
+	private String imagePath;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "manufacturer_id")
 	private CarManufacturer manufacturer;
@@ -248,6 +251,14 @@ public class CarModel {
 
 	public void setType(CarType type) {
 		this.type = type;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 	
 }

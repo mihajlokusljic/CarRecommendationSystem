@@ -1,5 +1,7 @@
 package kusljic.mihajlo.sbnz.spring.backend.service.impl;
 
+import static java.lang.Math.min;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -89,24 +91,19 @@ public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
 		// query results
 		List<Recommendation> result = new ArrayList<Recommendation>();
 		QueryResults recommendations = this.kieSession.getQueryResults("Fetch recommendations");
-		System.out.println("we have " + recommendations.size() + " recommended car models:");
+		System.out.println("we have " + recommendations.size() + " recommended car models.");
 
-		int recommendationsCount = 0;
 		for (QueryResultsRow row : recommendations) {
 			Recommendation rec = (Recommendation) row.get("$r");
-
-			if (recommendationsCount < maxRecommendations) {
-				result.add(rec);
-				recommendationsCount++;
-				System.out.println(String.format("%d: %s", recommendationsCount, rec.getCarModel()));
-			}
-
+			result.add(rec);
 			this.kieSession.delete(row.getFactHandle("$r"));
 		}
+		
+		// Leave top recommendations
 		Collections.sort(result, new RecommendationComparator());
-
-		// Read and delete generated conformances so that they don't pollute next query
-		// results
+		result = result.subList(0, min(result.size(), this.maxRecommendations));
+		
+		// Read and delete generated conformances so that they don't pollute next query results
 		QueryResults conformances = this.kieSession.getQueryResults("Fetch conformances");
 		for (QueryResultsRow row : conformances) {
 			this.kieSession.delete(row.getFactHandle("$c"));
