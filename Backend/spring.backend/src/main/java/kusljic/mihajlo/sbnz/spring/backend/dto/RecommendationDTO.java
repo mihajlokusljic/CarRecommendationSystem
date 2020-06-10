@@ -7,6 +7,7 @@ public class RecommendationDTO {
 	private Long carModelId;
 	private String carModel;
 	private String carModelImageUrl;
+	private double price;
 	private double score;
 	
 	public RecommendationDTO() {
@@ -17,6 +18,7 @@ public class RecommendationDTO {
 		this.carModelId = rec.getCarModel().getId();
 		this.carModel = rec.getCarModel().toString();
 		// this.carModelImageUrl = rec.getCarModel().get
+		this.price = rec.getCarModel().getBasePriceEuros();
 		this.score = rec.getScore();
 	}
 
@@ -44,6 +46,14 @@ public class RecommendationDTO {
 		this.carModelImageUrl = carModelImageUrl;
 	}
 
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
 	public double getScore() {
 		return score;
 	}
@@ -51,5 +61,5 @@ public class RecommendationDTO {
 	public void setScore(double score) {
 		this.score = score;
 	}
-
+	
 }

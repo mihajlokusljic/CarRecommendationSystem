@@ -1,0 +1,71 @@
+<form [formGroup]="recommendationForm" (ngSubmit)="onSubmit()">
+
+    <mat-grid-list cols="4" rowHeight="80px">
+
+        <mat-grid-tile  class="tile-left-aligned" colspan="2">
+            <mat-form-field class="input-field" appearance="standard">
+                <mat-label>Enter your budget in euros</mat-label>
+                <input id="budgetInput" type="number" matInput placeholder="E.g. 45000" formControlName="budget">
+                <span matSuffix>‎€</span>
+                <mat-error>Budget limit is required and must be a positive number.</mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+    
+        <mat-grid-tile  class="tile-left-aligned" colspan="2">
+            <mat-form-field class="input-field">
+                <mat-label>Choose your country</mat-label>
+                <input type="text" matInput [formControl]="country" [matAutocomplete]="auto" placeholder="Start typing...">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayCountry">
+                  <mat-option *ngFor="let cnt of filteredCountriesList | async" [value]="cnt">
+                    {{ displayCountry(cnt) }}
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-error>Country of residence is required</mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        
+        <mat-grid-tile class="tile-left-aligned" colspan="2">
+            <mat-checkbox formControlName="beginner">I am a beginner driver.</mat-checkbox>
+        </mat-grid-tile>
+    
+        <mat-grid-tile class="tile-left-aligned" colspan="2">
+            <mat-checkbox formControlName="travel">I want to travel.</mat-checkbox>
+        </mat-grid-tile>
+    
+        <mat-grid-tile class="tile-left-aligned" colspan="2">
+            <mat-checkbox formControlName="family">I have a family.</mat-checkbox>
+        </mat-grid-tile>
+    
+        <mat-grid-tile class="tile-left-aligned" colspan="2">
+            <mat-checkbox formControlName="connectivity">I want connectivity with devices.</mat-checkbox>
+        </mat-grid-tile>
+        
+        <mat-grid-tile class="tile-left-aligned" colspan="4">
+            I intend to use this car for:
+        </mat-grid-tile>
+    
+        <mat-radio-group formControlName="usage">
+            <mat-grid-tile class="tile-left-aligned">
+                <mat-radio-button value="city">City traffic</mat-radio-button>
+            </mat-grid-tile>
+        
+            <mat-grid-tile class="tile-left-aligned">
+                <mat-radio-button value="offroad">Off-roading</mat-radio-button>
+            </mat-grid-tile>
+        
+            <mat-grid-tile class="tile-left-aligned">
+                <mat-radio-button value="cargo">Cargo transport</mat-radio-button>
+            </mat-grid-tile>
+        
+            <mat-grid-tile class="tile-left-aligned">
+                <mat-radio-button value="sport">Sport and recreation</mat-radio-button>
+            </mat-grid-tile>
+        </mat-radio-group>
+        
+        <mat-grid-tile colspan="4">
+            <button type="submit" mat-raised-button color="primary" [style.fontSize.px]=28 [disabled]="!recommendationForm.valid">Find suitable cars</button>
+        </mat-grid-tile>
+        
+    </mat-grid-list>
+
+</form>
