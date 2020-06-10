@@ -1,11 +1,9 @@
+import { environment } from 'src/environments/environment';
 import { RecommendationQueryDTO } from './../../models/RecommendationQueryDTO';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
-import { countriesList } from '../../models/Countries';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { RecommendationService } from '../../services/recommendation.service';
-import { RecommendationDTO } from '../../models/RecommendationDTO';
 
 @Component({
   selector: 'app-recommendation-form',
@@ -13,7 +11,7 @@ import { RecommendationDTO } from '../../models/RecommendationDTO';
   styleUrls: ['./recommendation-form.component.scss']
 })
 export class RecommendationFormComponent implements OnInit {
-  countriesList = countriesList;
+  countriesList = environment.countriesList;
   filteredCountriesList: Observable<any[]>;
   @Output() searchRecommendations = new EventEmitter<RecommendationQueryDTO>();
 

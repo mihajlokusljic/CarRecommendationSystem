@@ -2,8 +2,8 @@
     <mat-toolbar-row>
         <button mat-button routerLink="/recommendations">Car for you</button>
         <div *ngIf="isAuthenticated()">
-            <button mat-button routerLink="/carManufacurers">Car manufacturers</button>
-            <button mat-button routerLink="/carModels">Car models</button>
+            <button mat-button routerLink="/admin/carManufacturers">Car manufacturers</button>
+            <button mat-button routerLink="/admin/carModels">Car models</button>
         </div>
         <span class="example-fill-remaining-space"></span>
         <div *ngIf="isAuthenticated()">

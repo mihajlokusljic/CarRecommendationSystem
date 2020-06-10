@@ -1,0 +1,31 @@
+<h1>Add new car manufacturer</h1>
+
+<form [formGroup]="addManufacturerForm" (ngSubmit)="onSubmit()">
+    <mat-grid-list cols="1" rowHeight="10vh">
+        <mat-grid-tile class="tile-left-aligned">
+          <mat-form-field class="input-field" [style.fontSize.px]=17>
+            <mat-label>Manufacturer name</mat-label>
+            <input matInput id="name" formControlName="name" placeholder="Enter manufacturer name">
+            <mat-error>Manufacturer name is required</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile  class="tile-left-aligned">
+            <mat-form-field class="input-field">
+                <mat-label>Manufacurer base country</mat-label>
+                <input type="text" matInput [formControl]="country" [matAutocomplete]="auto" placeholder="Start typing and select country...">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayCountry">
+                  <mat-option *ngFor="let cnt of filteredCountriesList | async" [value]="cnt">
+                    {{ displayCountry(cnt) }}
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-error>Manufacturer base country is required</mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        
+        <mat-grid-tile class="tile-left-aligned">
+            <button id="submitBtn" mat-raised-button color="primary" [disabled]="!addManufacturerForm.valid">Add manufacturer</button>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+
+</form>

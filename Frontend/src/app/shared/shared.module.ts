@@ -11,6 +11,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material';
+import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -45,6 +46,7 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
     MatFormFieldModule,
     MatGridListModule,
     MatInputModule,
+    MatListModule,
     MatProgressSpinnerModule,
     MatRadioModule,
     MatSnackBarModule,
@@ -56,7 +58,7 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    },
+    }
   ],
   exports:
   [
@@ -70,6 +72,7 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
     MatFormFieldModule,
     MatGridListModule,
     MatInputModule,
+    MatListModule,
     MatProgressSpinnerModule,
     MatRadioModule,
     MatSnackBarModule,
