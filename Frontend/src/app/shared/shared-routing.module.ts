@@ -1,3 +1,4 @@
+import { LoginComponent } from './components/login/login.component';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -8,6 +9,10 @@ const routes: Routes = [
   {
     path: 'recommendations',
     component: RecommendationsComponent
+  },
+  {
+    path: 'admin/login',
+    component: LoginComponent
   },
   {
     path: '',

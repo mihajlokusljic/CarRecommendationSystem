@@ -1,0 +1,27 @@
+.main-div {
+    height: 80vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .login-card {
+    padding-left: 0vw;
+    padding-right: 0vw;
+    width: 32vw;
+    min-height: 30vh;
+  }
+  .login-toolbar {
+    width: 32vw;
+  }
+  .login-input-height{
+    min-height: 4vh;
+  }
+  .login-input-width {
+    min-width: 20vw;
+  }
+  .login-button {
+    min-width: 5vw;
+    min-height: 4vh;
+  }

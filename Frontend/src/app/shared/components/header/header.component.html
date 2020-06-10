@@ -1,9 +1,13 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-        <a mat-button [routerLink]="'/recommendations'">Car for you</a>
+        <button mat-button routerLink="/recommendations">Car for you</button>
+        <div *ngIf="isAuthenticated()">
+            <button mat-button routerLink="/carManufacurers">Car manufacturers</button>
+            <button mat-button routerLink="/carModels">Car models</button>
+        </div>
         <span class="example-fill-remaining-space"></span>
-        <!--
-        <a mat-button [routerLink]="'/events'" (click)="logout()">Log out</a>
-        -->
+        <div *ngIf="isAuthenticated()">
+            <button routerLink="/admin/login" mat-button (click)="onLogout()" *ngIf="isAuthenticated()">Logout</button>
+        </div>
     </mat-toolbar-row>
 </mat-toolbar>
