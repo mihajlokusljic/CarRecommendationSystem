@@ -10,6 +10,9 @@
     </mat-grid-list>
 </div>
 
-<div *ngIf="!querying && !loading">
+<div *ngIf="!querying && !loading" class="centered">
     <app-recommendations-list [recommendations]="recommendations"></app-recommendations-list>
+
+    <button mat-raised-button color="primary" [style.fontSize.px]=28 (click)="onReturn()" class="back-btn">Back to search</button>
 </div>
+

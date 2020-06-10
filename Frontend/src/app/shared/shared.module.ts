@@ -6,11 +6,12 @@ import { HeaderComponent } from './components/header/header.component';
 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RecommendationFormComponent } from './components/recommendation-form/recommendation-form.component';
@@ -20,14 +21,21 @@ import { RecommendationsListComponent } from './components/recommendations-list/
 
 
 @NgModule({
-  declarations: [HeaderComponent, RecommendationFormComponent, RecommendationsComponent, RecommendationsListComponent],
-  imports: [
+  declarations: [
+    HeaderComponent,
+    RecommendationFormComponent,
+    RecommendationsComponent,
+    RecommendationsListComponent,
+  ],
+  imports:
+  [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     SharedRoutingModule,
     MatAutocompleteModule,
     MatButtonModule,
+    MatCardModule,
     MatCheckboxModule,
     MatFormFieldModule,
     MatGridListModule,
@@ -42,6 +50,7 @@ import { RecommendationsListComponent } from './components/recommendations-list/
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatButtonModule,
+    MatCardModule,
     MatCheckboxModule,
     MatFormFieldModule,
     MatGridListModule,
