@@ -1,0 +1,3 @@
+export enum CarType {
+    COUPE, HATCHBACK, MICRO, MINIVAN, PICKUP, SEDAN, SUV, WAGON
+}

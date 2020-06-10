@@ -1,0 +1,139 @@
+<form [formGroup]="addModelForm" (ngSubmit)="onSubmit()">
+
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+            <ng-template matStepLabel>Fill basic information</ng-template>
+            <mat-grid-list cols="2" rowHeight="80px">
+
+                <mat-grid-tile class="tile-left-aligned">
+                    <mat-form-field class="input-field">
+                        <mat-autocomplete #manufacturers="matAutocomplete" [displayWith] = "displayFn">
+                            <mat-option *ngFor="let manufacturer of filteredManufacturersList | async" [value]="manufacturer">
+                              {{ manufacturer.name }}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <mat-label>Manufacturer</mat-label>
+                        <input matInput id="manufacturer" [matAutocomplete]="manufacturers" formControlName="manufacturer" placeholder="Start typing and select manufacturer...">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile class="tile-left-aligned">
+                    <mat-form-field class="input-field">
+                        <mat-label>Model name</mat-label>
+                        <input matInput placeholder="Enter the name of car model" formControlName="name">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile class="tile-left-aligned" colspan="2">
+                    <mat-form-field class="input-field">
+                        <mat-label>Base price in euros</mat-label>
+                        <input matInput placeholder="Enter base price of car model" formControlName="price">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile class="tile-left-aligned">
+                    <mat-form-field class="input-field">
+                        <mat-label>Body type</mat-label>
+                        <input matInput placeholder="Select body type" formControlName="type">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile class="tile-left-aligned">
+                    <mat-form-field class="input-field">
+                        <mat-label>Transmission type</mat-label>
+                        <input matInput placeholder="Select transmission type" formControlName="transmission">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile class="tile-left-aligned">
+                    <mat-form-field class="input-field">
+                        <mat-label>Number of doors</mat-label>
+                        <input matInput placeholder="Enter number of doors" formControlName="doorsNum">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile class="tile-left-aligned">
+                    <mat-form-field class="input-field">
+                        <mat-label>Number of seats</mat-label>
+                        <input matInput placeholder="Enter number of seats" formControlName="seatsNum">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile class="tile-left-aligned" colspan="2">
+                    <mat-form-field class="input-field">
+                        <mat-label>Boot capacity in litres</mat-label>
+                        <input matInput placeholder="Enter boot capacity" formControlName="bootCapacity">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile class="tile-left-aligned" colspan="2">
+                    <mat-form-field class="input-field">
+                        <mat-label>Top speed in km/h</mat-label>
+                        <input matInput placeholder="Enter top speed" formControlName="topSpeed">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+            </mat-grid-list>
+            
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+            
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <ng-template matStepLabel>Fill fuel and engine infromation</ng-template>
+            
+            <mat-grid-list cols="1" rowHeight="80px">
+
+                <mat-grid-tile class="tile-left-aligned">
+                    <mat-form-field class="input-field">
+                        <mat-label>Fuel type</mat-label>
+                        <input matInput placeholder="Select fuel type" formControlName="fuelType">
+                      </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile class="tile-left-aligned">
+                    <mat-form-field class="input-field">
+                        <mat-label>Engine displacement</mat-label>
+                        <input matInput placeholder="Enter engine displacement in cubic centimeters" formControlName="engineDisplacement">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile class="tile-left-aligned">
+                    <mat-form-field class="input-field">
+                        <mat-label>Engine power in BHP</mat-label>
+                        <input matInput placeholder="Enter engine power in break horsepowers" formControlName="enginePower">
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile class="tile-left-aligned">
+                    <mat-form-field class="input-field">
+                        <mat-label>Mileage in kilometers</mat-label>
+                        <input matInput placeholder="Enter number of kilometers this car model can drive using one leter of fuel" formControlName="mileage">
+                    </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Fill conveniences infromation</ng-template>
+          
+          <mat-selection-list #conviniences formControlName="conviniencesControl">
+            <mat-list-option *ngFor="let conv of conviniencesBro">
+                {{conv}}
+            </mat-list-option>
+          </mat-selection-list>
+
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button type="submit">Add car model</button>
+          </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+    
+</form>
