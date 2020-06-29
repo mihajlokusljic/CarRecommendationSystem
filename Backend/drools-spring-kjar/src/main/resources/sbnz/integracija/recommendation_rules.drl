@@ -18,7 +18,7 @@ rule "Highly recommend"
 	then
 		double score = 0.45 * $budgetScore + 0.40 * $needsScore + 0.15 * $maintenanceScore;
 		insert( new Recommendation($m, score) );
-		System.out.println($m + " is recommended");
+		System.out.println($m + " is recommended with score: " + score);
 end;
 
 rule "Recommend"
@@ -32,5 +32,5 @@ rule "Recommend"
 	then
 		double score = 0.45 * $budgetScore + 0.40 * $needsScore;
 		insert( new Recommendation($m, score) );
-		System.out.println($m + " is recommended");
+		System.out.println($m + " is recommended with score: " + score);
 end;

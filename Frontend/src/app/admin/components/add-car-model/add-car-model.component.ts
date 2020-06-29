@@ -6,6 +6,11 @@ import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CarManufacturerDTO } from '../../models/CarManufacturerDTO';
+import { CarConvenience } from 'src/app/shared/models/CarConvenience';
+import { FuelType } from 'src/app/shared/models/FuelType';
+import { Transmission } from 'src/app/shared/models/Transmission';
+import { CarType } from 'src/app/shared/models/CarType';
+import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 
 @Component({
   selector: 'app-add-car-model',
@@ -19,8 +24,10 @@ export class AddCarModelComponent implements OnInit {
 
   conviniences: string[] = [];
 
-  conviniencesBro: string[] = ['Bluetooth connective', 'Onboard navigatio system', 'Parking sensors', 'Passanger airbags',
+  conviniencesBro: string[] = ['Bluetooth connective', 'Onboard navigation system', 'Parking sensors', 'Passanger airbags',
   'Rear parking camera', 'Child seat mounts'];
+
+  selectedConviniences: number[] = [];
 
 
   addModelForm = new FormGroup({
@@ -40,14 +47,67 @@ export class AddCarModelComponent implements OnInit {
     conviniencesControl: new FormControl(''),
   });
 
+  constructor(
+    private carModelService: CarModelService,
+    private carManufacturerService: CarManufacturerService,
+    private snackbarService: SnackbarService
+  ) { }
+
   get manufacturer() {
     return this.addModelForm.get('manufacturer');
   }
 
-  constructor(
-    private carModelService: CarModelService,
-    private carManufacturerService: CarManufacturerService
-  ) { }
+  get name() {
+    return this.addModelForm.get('name');
+  }
+
+  get price() {
+    return this.addModelForm.get('price');
+  }
+
+  get type() {
+    return this.addModelForm.get('type');
+  }
+
+  get transmission() {
+    return this.addModelForm.get('transmission');
+  }
+
+  get seatsNum() {
+    return this.addModelForm.get('seatsNum');
+  }
+
+  get doorsNum() {
+    return this.addModelForm.get('doorsNum');
+  }
+
+  get bootCapacity() {
+    return this.addModelForm.get('bootCapacity');
+  }
+
+  get topSpeed() {
+    return this.addModelForm.get('topSpeed');
+  }
+
+  get fuelType() {
+    return this.addModelForm.get('fuelType');
+  }
+
+  get engineDisplacement() {
+    return this.addModelForm.get('engineDisplacement');
+  }
+
+  get enginePower() {
+    return this.addModelForm.get('enginePower');
+  }
+
+  get mileage() {
+    return this.addModelForm.get('mileage');
+  }
+
+  get conviniencesControl() {
+    return this.addModelForm.get('conviniencesControl');
+  }
 
   ngOnInit() {
     this.carManufacturerService.getAllManufacturers().subscribe(
@@ -71,12 +131,44 @@ export class AddCarModelComponent implements OnInit {
     return manufacturer.name;
   }
 
-  onSubmit() {
-    /*
-    newCarModel: CarModelDTO = {
+  onConvinienceSelection(conviniences) {
+    this.selectedConviniences = conviniences.selectedOptions.selected.map(item => item.value);
+  }
 
-    }
-    */
+  onSubmit() {
+
+    const newCarModel: CarModelDTO = {
+      basePriceEuros: this.price.value,
+      bluetoothConnective: this.selectedConviniences.includes(CarConvenience.CONNECTIVITY),
+      bootCapacityLitres: this.bootCapacity.value,
+      doorsNumber: this.doorsNum.value,
+      engineDisplacementCcm: this.engineDisplacement.value,
+      enginePowerBhp: this.enginePower.value,
+      fuelType: FuelType[this.fuelType.value],
+      havingNavigationSystem: this.selectedConviniences.includes(CarConvenience.NAVIGATION),
+      havingParkingSensors: this.selectedConviniences.includes(CarConvenience.PARKING_SENSORS),
+      havingPassangerAirbags: this.selectedConviniences.includes(CarConvenience.AIRBAGS),
+      havingRearCamera: this.selectedConviniences.includes(CarConvenience.REAR_CAMERA),
+      manufacturerId: this.manufacturer.value.id,
+      mileage: this.mileage.value,
+      name: this.name.value,
+      seatsNumber: this.seatsNum.value,
+      supportingChildSeatMounts: this.selectedConviniences.includes(CarConvenience.CHILD_SEAT_MOUNTS),
+      topSpeedKmh: this.topSpeed.value,
+      transmission: Transmission[this.transmission.value],
+      type: CarType[this.type.value]
+    };
+
+    console.log(newCarModel);
+    this.carModelService.addCarmodel(newCarModel).subscribe(
+      (newModel) => {
+        this.snackbarService.displayMessage('Car model was successfully added.');
+      },
+
+      (error) => {
+        this.snackbarService.displayMessage('An error occured while adding car model.');
+      }
+    );
   }
 
 }

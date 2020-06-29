@@ -3,14 +3,14 @@ import { Transmission } from './Transmission';
 import { CarType } from './CarType';
 
 export interface CarModelDTO {
-    id: number;
+    id?: number;
     basePriceEuros: number;
     bluetoothConnective: boolean;
     bootCapacityLitres: number;
     doorsNumber: number;
     engineDisplacementCcm: number;
     enginePowerBhp: number;
-    fuelType: FuelType;
+    fuelType: string;
     havingNavigationSystem: boolean;
     havingParkingSensors: boolean;
     havingPassangerAirbags: boolean;
@@ -22,6 +22,6 @@ export interface CarModelDTO {
     seatsNumber: number;
     supportingChildSeatMounts: boolean;
     topSpeedKmh: number;
-    transmission: Transmission;
-    type: CarType;
+    transmission: string;
+    type: string;
 }

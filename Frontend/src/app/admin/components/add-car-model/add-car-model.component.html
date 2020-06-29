@@ -14,6 +14,7 @@
                         </mat-autocomplete>
                         <mat-label>Manufacturer</mat-label>
                         <input matInput id="manufacturer" [matAutocomplete]="manufacturers" formControlName="manufacturer" placeholder="Start typing and select manufacturer...">
+                        <mat-error>Manufacturer is required</mat-error>
                     </mat-form-field>
                 </mat-grid-tile>
 
@@ -21,62 +22,84 @@
                     <mat-form-field class="input-field">
                         <mat-label>Model name</mat-label>
                         <input matInput placeholder="Enter the name of car model" formControlName="name">
+                        <mat-error>Model name is required</mat-error>
                     </mat-form-field>
                 </mat-grid-tile>
 
                 <mat-grid-tile class="tile-left-aligned" colspan="2">
                     <mat-form-field class="input-field">
                         <mat-label>Base price in euros</mat-label>
-                        <input matInput placeholder="Enter base price of car model" formControlName="price">
+                        <input type="number" matInput placeholder="Enter base price of car model" formControlName="price">
+                        <span matSuffix>‎€</span>
+                        <mat-error>Base price must be a positive number</mat-error>
                     </mat-form-field>
                 </mat-grid-tile>
 
                 <mat-grid-tile class="tile-left-aligned">
                     <mat-form-field class="input-field">
                         <mat-label>Body type</mat-label>
-                        <input matInput placeholder="Select body type" formControlName="type">
+                        <mat-select formControlName="type">
+                            <mat-option value="0">Coupe</mat-option>
+                            <mat-option value="1">Hatchback</mat-option>
+                            <mat-option value="2">Micro</mat-option>
+                            <mat-option value="3">Minivan</mat-option>
+                            <mat-option value="4">Pickup</mat-option>
+                            <mat-option value="5">Sedan</mat-option>
+                            <mat-option value="6">SUV</mat-option>
+                            <mat-option value="7">Wagon</mat-option>
+                        </mat-select>
+                        <mat-error>Body must be specified</mat-error>
                     </mat-form-field>
                 </mat-grid-tile>
 
                 <mat-grid-tile class="tile-left-aligned">
                     <mat-form-field class="input-field">
                         <mat-label>Transmission type</mat-label>
-                        <input matInput placeholder="Select transmission type" formControlName="transmission">
+                        <mat-label>Body type</mat-label>
+                        <mat-select formControlName="transmission">
+                            <mat-option value="0">Automatic</mat-option>
+                            <mat-option value="1">Manual</mat-option>
+                        </mat-select>
+                        <mat-error>Transmission type must be specified</mat-error>
                     </mat-form-field>
                 </mat-grid-tile>
 
                 <mat-grid-tile class="tile-left-aligned">
                     <mat-form-field class="input-field">
                         <mat-label>Number of doors</mat-label>
-                        <input matInput placeholder="Enter number of doors" formControlName="doorsNum">
+                        <input type="number" matInput placeholder="Enter number of doors" formControlName="doorsNum">
+                        <mat-error>Number of doors must be a positive number</mat-error>
                     </mat-form-field>
                 </mat-grid-tile>
 
                 <mat-grid-tile class="tile-left-aligned">
                     <mat-form-field class="input-field">
                         <mat-label>Number of seats</mat-label>
-                        <input matInput placeholder="Enter number of seats" formControlName="seatsNum">
+                        <input type="number" matInput placeholder="Enter number of seats" formControlName="seatsNum">
+                        <mat-error>Number of seats must be a positive number</mat-error>
                     </mat-form-field>
                 </mat-grid-tile>
 
                 <mat-grid-tile class="tile-left-aligned" colspan="2">
                     <mat-form-field class="input-field">
                         <mat-label>Boot capacity in litres</mat-label>
-                        <input matInput placeholder="Enter boot capacity" formControlName="bootCapacity">
+                        <input type="number" matInput placeholder="Enter boot capacity" formControlName="bootCapacity">
+                        <mat-error>Boot capacity must be a positive number</mat-error>
                     </mat-form-field>
                 </mat-grid-tile>
 
                 <mat-grid-tile class="tile-left-aligned" colspan="2">
                     <mat-form-field class="input-field">
                         <mat-label>Top speed in km/h</mat-label>
-                        <input matInput placeholder="Enter top speed" formControlName="topSpeed">
+                        <input type="number" matInput placeholder="Enter top speed" formControlName="topSpeed">
+                        <mat-error>Top speed must be a positive number</mat-error>
                     </mat-form-field>
                 </mat-grid-tile>
 
             </mat-grid-list>
             
             <div>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperNext type="button">Next</button>
             </div>
             
         </mat-step>
@@ -88,42 +111,51 @@
                 <mat-grid-tile class="tile-left-aligned">
                     <mat-form-field class="input-field">
                         <mat-label>Fuel type</mat-label>
-                        <input matInput placeholder="Select fuel type" formControlName="fuelType">
+                        <mat-select formControlName="fuelType">
+                            <mat-option value="0">Diesel</mat-option>
+                            <mat-option value="1">Electric</mat-option>
+                            <mat-option value="2">Hibrid</mat-option>
+                            <mat-option value="3">Petrol</mat-option>
+                        </mat-select>
+                        <mat-error>Fuel type must be specified</mat-error>
                       </mat-form-field>
                 </mat-grid-tile>
 
                 <mat-grid-tile class="tile-left-aligned">
                     <mat-form-field class="input-field">
                         <mat-label>Engine displacement</mat-label>
-                        <input matInput placeholder="Enter engine displacement in cubic centimeters" formControlName="engineDisplacement">
+                        <input type="number" matInput placeholder="Enter engine displacement in cubic centimeters" formControlName="engineDisplacement">
+                        <mat-error>Engne displacement must be a positive number</mat-error>
                     </mat-form-field>
                 </mat-grid-tile>
 
                 <mat-grid-tile class="tile-left-aligned">
                     <mat-form-field class="input-field">
                         <mat-label>Engine power in BHP</mat-label>
-                        <input matInput placeholder="Enter engine power in break horsepowers" formControlName="enginePower">
+                        <input type="number" matInput placeholder="Enter engine power in break horsepowers" formControlName="enginePower">
+                        <mat-error>Engne power must be a positive number</mat-error>
                     </mat-form-field>
                 </mat-grid-tile>
 
                 <mat-grid-tile class="tile-left-aligned">
                     <mat-form-field class="input-field">
                         <mat-label>Mileage in kilometers</mat-label>
-                        <input matInput placeholder="Enter number of kilometers this car model can drive using one leter of fuel" formControlName="mileage">
+                        <input type="number" matInput placeholder="Enter number of kilometers this car model can drive using one leter of fuel" formControlName="mileage">
+                        <mat-error>Mileage must be a positive number</mat-error>
                     </mat-form-field>
                 </mat-grid-tile>
             </mat-grid-list>
 
             <div>
               <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperNext type="button">Next</button>
             </div>
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Fill conveniences infromation</ng-template>
           
           <mat-selection-list #conviniences formControlName="conviniencesControl">
-            <mat-list-option *ngFor="let conv of conviniencesBro">
+            <mat-list-option *ngFor="let conv of conviniencesBro; let i = index" (click)="onConvinienceSelection(conviniences)" [value]="i">
                 {{conv}}
             </mat-list-option>
           </mat-selection-list>
@@ -131,7 +163,7 @@
           <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="stepper.reset()">Reset</button>
-            <button mat-button type="submit">Add car model</button>
+            <button mat-raised-button type="submit" color="primary" [disabled]="!addModelForm.valid">Add car model</button>
           </div>
         </mat-step>
     </mat-horizontal-stepper>

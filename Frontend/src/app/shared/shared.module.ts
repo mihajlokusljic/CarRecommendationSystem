@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select'; 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RecommendationFormComponent } from './components/recommendation-form/recommendation-form.component';
@@ -49,6 +50,7 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
     MatListModule,
     MatProgressSpinnerModule,
     MatRadioModule,
+    MatSelectModule,
     MatSnackBarModule,
     MatToolbarModule
   ],
@@ -75,6 +77,7 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
     MatListModule,
     MatProgressSpinnerModule,
     MatRadioModule,
+    MatSelectModule,
     MatSnackBarModule,
     MatToolbarModule
   ]
