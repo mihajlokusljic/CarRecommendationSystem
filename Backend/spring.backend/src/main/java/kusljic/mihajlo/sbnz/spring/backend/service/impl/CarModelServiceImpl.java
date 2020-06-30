@@ -14,16 +14,19 @@ import kusljic.mihajlo.sbnz.spring.backend.exception.InvalidFieldException;
 import kusljic.mihajlo.sbnz.spring.backend.facts.CarModel;
 import kusljic.mihajlo.sbnz.spring.backend.repository.CarModelRepository;
 import kusljic.mihajlo.sbnz.spring.backend.service.CarModelService;
+import kusljic.mihajlo.sbnz.spring.backend.service.KnowledgeEngineService;
 
 @Service
 public class CarModelServiceImpl implements CarModelService {
 	
 	private CarModelRepository carModelRepository;
+	private KnowledgeEngineService knowledgeEngineService;
 	
 	@Autowired
-	public CarModelServiceImpl(CarModelRepository carModelRepository) {
+	public CarModelServiceImpl(CarModelRepository carModelRepository, KnowledgeEngineService knowledgeEngineService) {
 		super();
 		this.carModelRepository = carModelRepository;
+		this.knowledgeEngineService = knowledgeEngineService;
 	}
 
 	@Override
@@ -43,7 +46,9 @@ public class CarModelServiceImpl implements CarModelService {
 		if(sameCarModel != null) {
 			throw new EntityAlreadyExistsException(String.format("Car model with name %s already exists.", newCarModel.getName()));
 		}
-		return this.carModelRepository.save(newCarModel);
+		CarModel result = this.carModelRepository.save(newCarModel);
+		this.knowledgeEngineService.processNewCarModel(result);
+		return result;
 	}
 
 	@Override
@@ -53,7 +58,11 @@ public class CarModelServiceImpl implements CarModelService {
 		if(modelToUpdate == null) {
 			throw new EntityNotFoundException("The given car model does not exist.");
 		}
-		return this.carModelRepository.save(carModel);
+		
+		this.knowledgeEngineService.removeCarModelData(modelToUpdate);
+		CarModel modifiedCarmodel = this.carModelRepository.save(carModel);
+		this.knowledgeEngineService.processNewCarModel(modifiedCarmodel);
+		return modifiedCarmodel;
 	}
 
 	@Override
@@ -62,8 +71,8 @@ public class CarModelServiceImpl implements CarModelService {
 		if(toDelete == null) {
 			throw new EntityNotFoundException(String.format("Car model with id %d does not exist", carModelId));
 		}
+		this.knowledgeEngineService.removeCarModelData(toDelete);
 		this.carModelRepository.delete(toDelete);
-
 	}
 
 	@Override

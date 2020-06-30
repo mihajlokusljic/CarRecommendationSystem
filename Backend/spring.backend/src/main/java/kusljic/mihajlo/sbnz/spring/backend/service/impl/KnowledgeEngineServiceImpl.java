@@ -34,9 +34,13 @@ import kusljic.mihajlo.sbnz.spring.backend.util.RecommendationComparator;
 @Service
 public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
 
-	private final KieContainer kieContainer;
-	private CarModelService carModelService;
 	private KieSession kieSession;
+	
+	@Autowired
+	private KieContainer kieContainer;
+	
+	@Autowired
+	private CarModelService carModelService;
 
 	@Autowired
 	private CountryService countryService;
@@ -44,12 +48,6 @@ public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
 	@Value("${maxRecommendatons}")
 	private Integer maxRecommendations;
 
-	@Autowired
-	public KnowledgeEngineServiceImpl(KieContainer kieContainer, CarModelService carModelService) {
-		super();
-		this.kieContainer = kieContainer;
-		this.carModelService = carModelService;
-	}
 
 	@PostConstruct
 	private void initializeSession() {
@@ -134,6 +132,41 @@ public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
 	public boolean isAccountBlocked(String username) {
 		QueryResults accountLocks = this.kieSession.getQueryResults("Fetch locks for account", username);
 		return accountLocks.size() > 0;
+	}
+	
+	@Override
+	public CarModel processNewCarModel(CarModel newModel) {
+		// insert new car model into session as a fact
+		this.kieSession.insert(newModel);
+		
+		// generate observation facts for new car model
+		Agenda agenda = this.kieSession.getAgenda();
+		agenda.getAgendaGroup("global observations").setFocus();
+		this.kieSession.fireAllRules();
+		
+		return newModel;
+	}
+	
+	@Override
+	public boolean removeCarModelData(CarModel modelToRemove) {
+		// TODO Auto-generated method stub
+		QueryResults modelResults = this.kieSession.getQueryResults("Fetch car model", modelToRemove);
+		if (modelResults.size() == 0) {
+			return false;
+		}
+		
+		// Fetch and remove observation facts about car model
+		QueryResults observations = this.kieSession.getQueryResults("Fetch observations for car model", modelToRemove);
+		for (QueryResultsRow row : observations) {
+			this.kieSession.delete(row.getFactHandle("$o"));
+		}
+		
+		// Remove fact about car model
+		for (QueryResultsRow row : modelResults) {
+			this.kieSession.delete(row.getFactHandle("$cm"));
+		}
+
+		return true;
 	}
 	
 	@PreDestroy
