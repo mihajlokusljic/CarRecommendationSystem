@@ -1,5 +1,7 @@
 package kusljic.mihajlo.sbnz.spring.backend.controller;
 
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kusljic.mihajlo.sbnz.spring.backend.dto.LoginRequestDTO;
 import kusljic.mihajlo.sbnz.spring.backend.dto.LoginResponseDTO;
+import kusljic.mihajlo.sbnz.spring.backend.facts.LoginAttempt;
+import kusljic.mihajlo.sbnz.spring.backend.service.KnowledgeEngineService;
 import kusljic.mihajlo.sbnz.spring.backend.util.JwtUtil;
 
 
@@ -30,12 +34,23 @@ public class AuthenticationController {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+	private KnowledgeEngineService knowledgeEngineService;
 
 	@Autowired
 	private JwtUtil jwtUtils;
 
 	@PostMapping
 	public ResponseEntity<?> login(@RequestBody @Valid LoginRequestDTO loginRequest) {
+		// Check if account has been locked
+		if (this.knowledgeEngineService.isAccountBlocked(loginRequest.getUsername())) {
+			return new ResponseEntity<String>("Your account has been temporarily blocked due to too many failed login attempts.", HttpStatus.FORBIDDEN);
+		}
+		
+		
+		LoginAttempt loginAttempt = new LoginAttempt(loginRequest.getUsername(), new Date());
+		
 		try {
 			final Authentication authentication = authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(
@@ -47,10 +62,19 @@ public class AuthenticationController {
 			User user = (User) authentication.getPrincipal();
 			String jwt = jwtUtils.generateToken(user);
 			
+			// Remember successful login attempt
+			loginAttempt.setSuccessful(true);
+			this.knowledgeEngineService.registerLoginAttempt(loginAttempt);
+			
 			// Return token for successful authentication
 			LoginResponseDTO response = new LoginResponseDTO(jwt);
 			return ResponseEntity.ok(response);
 		} catch (BadCredentialsException e) {
+			// Remember failed login attempt
+			loginAttempt.setSuccessful(false);
+			this.knowledgeEngineService.registerLoginAttempt(loginAttempt);
+				
+			// Return error message
 			return new ResponseEntity<String>("Invalid username or password", HttpStatus.BAD_REQUEST);
 		}
 	}

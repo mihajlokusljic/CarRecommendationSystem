@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import kusljic.mihajlo.sbnz.spring.backend.facts.CarModel;
 import kusljic.mihajlo.sbnz.spring.backend.facts.Country;
+import kusljic.mihajlo.sbnz.spring.backend.facts.LoginAttempt;
 import kusljic.mihajlo.sbnz.spring.backend.facts.ObservationType;
 import kusljic.mihajlo.sbnz.spring.backend.facts.Recommendation;
 import kusljic.mihajlo.sbnz.spring.backend.facts.RecommendationQuery;
@@ -52,7 +53,7 @@ public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
 
 	@PostConstruct
 	private void initializeSession() {
-		this.kieSession = kieContainer.newKieSession();
+		this.kieSession = kieContainer.newKieSession("rules-session");
 
 		// populate session with facts about car models
 		List<CarModel> carModels = this.carModelService.findAll();
@@ -114,6 +115,25 @@ public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
 		this.kieSession.delete(queryHandle);
 
 		return result;
+	}
+	
+	@Override
+	public LoginAttempt registerLoginAttempt(LoginAttempt loginAttemp) {
+		// TODO Auto-generated method stub
+		this.kieSession.insert(loginAttemp);
+		
+		// Block accounts with too many failed login attempts
+		Agenda agenda = this.kieSession.getAgenda();
+		agenda.getAgendaGroup("brute force prevention").setFocus();
+		this.kieSession.fireAllRules();
+		
+		return loginAttemp;
+	}
+
+	@Override
+	public boolean isAccountBlocked(String username) {
+		QueryResults accountLocks = this.kieSession.getQueryResults("Fetch locks for account", username);
+		return accountLocks.size() > 0;
 	}
 	
 	@PreDestroy

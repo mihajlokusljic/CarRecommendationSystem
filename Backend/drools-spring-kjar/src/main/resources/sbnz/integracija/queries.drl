@@ -2,6 +2,7 @@ package sbnz.integracija;
 
 import kusljic.mihajlo.sbnz.spring.backend.facts.Conformance;
 import kusljic.mihajlo.sbnz.spring.backend.facts.Recommendation;
+import kusljic.mihajlo.sbnz.spring.backend.facts.AccountLock;
 
 query "Fetch conformances"
 	$c: Conformance()
@@ -9,4 +10,12 @@ end
 
 query "Fetch recommendations"
 	$r: Recommendation()
+end
+
+query "Fetch all account locks"
+	$al: AccountLock()
+end
+
+query "Fetch locks for account" (String $username)
+	$al: AccountLock(username.equals($username))
 end

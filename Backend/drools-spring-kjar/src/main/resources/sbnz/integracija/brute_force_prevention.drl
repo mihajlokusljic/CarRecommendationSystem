@@ -1,0 +1,23 @@
+package sbnz.integracija;
+
+import java.util.Date;
+import java.util.List;
+
+import kusljic.mihajlo.sbnz.spring.backend.facts.AccountLock;
+import kusljic.mihajlo.sbnz.spring.backend.facts.LoginAttempt;
+
+rule "Lock account when failed logins"
+	agenda-group "brute force prevention"
+	when
+		$l: LoginAttempt($user: username)
+		$failedAttempts: List(size >= 5) from collect (
+			LoginAttempt(username == $user, successful == false) over window:time( 5m )
+		)
+		$successfulAttempts: List(size == 0) from collect (
+			LoginAttempt(username == $user, successful == true) over window:time( 5m )
+		)
+		not AccountLock(username == $user)
+	then
+		insert( new AccountLock($user, new Date()) );
+		System.out.println("Account " + $user + " has been blocked due to failed login attempts.");
+end;
