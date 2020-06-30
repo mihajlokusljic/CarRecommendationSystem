@@ -1,0 +1,37 @@
+package sbnz.integracija;
+
+import kusljic.mihajlo.sbnz.spring.backend.facts.CarModel;
+import kusljic.mihajlo.sbnz.spring.backend.facts.RecommendationHistory;
+import kusljic.mihajlo.sbnz.spring.backend.repository.CarModelRepository;
+
+global CarModelRepository carModelRepository;
+
+rule "Set trending car models"
+	agenda-group "trending"
+	when 
+		$m: CarModel(trending == false)
+		Number(intValue >= 2) from accumulate (
+			$rh: RecommendationHistory(carModel == $m) over window:time( 5d ),
+			count($rh)
+		)
+	then
+		$m.setTrending(true);
+		update($m);
+		carModelRepository.save($m);
+		System.out.println($m + " is now trending.");
+end;
+
+rule "Set non-trending car models"
+	agenda-group "trending"
+	when 
+		$m: CarModel(trending == true)
+		Number(intValue < 2) from accumulate (
+			$rh: RecommendationHistory(carModel == $m) over window:time( 5d ),
+			count($rh)
+		)
+	then
+		$m.setTrending(false);
+		update($m);
+		carModelRepository.save($m);
+		System.out.println($m + " is no longer trending.");
+end;

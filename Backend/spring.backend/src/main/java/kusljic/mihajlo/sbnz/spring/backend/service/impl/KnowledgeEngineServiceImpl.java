@@ -26,7 +26,7 @@ import kusljic.mihajlo.sbnz.spring.backend.facts.LoginAttempt;
 import kusljic.mihajlo.sbnz.spring.backend.facts.ObservationType;
 import kusljic.mihajlo.sbnz.spring.backend.facts.Recommendation;
 import kusljic.mihajlo.sbnz.spring.backend.facts.RecommendationQuery;
-import kusljic.mihajlo.sbnz.spring.backend.service.CarModelService;
+import kusljic.mihajlo.sbnz.spring.backend.repository.CarModelRepository;
 import kusljic.mihajlo.sbnz.spring.backend.service.CountryService;
 import kusljic.mihajlo.sbnz.spring.backend.service.KnowledgeEngineService;
 import kusljic.mihajlo.sbnz.spring.backend.util.RecommendationComparator;
@@ -36,25 +36,33 @@ public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
 
 	private KieSession kieSession;
 	
-	@Autowired
 	private KieContainer kieContainer;
 	
-	@Autowired
-	private CarModelService carModelService;
-
-	@Autowired
 	private CountryService countryService;
+	
+	private CarModelRepository carModelRepository;
 
 	@Value("${maxRecommendatons}")
 	private Integer maxRecommendations;
-
+	
+	@Autowired
+	public KnowledgeEngineServiceImpl(KieContainer kieContainer, CountryService countryService,
+			CarModelRepository carModelRepository) {
+		super();
+		this.kieContainer = kieContainer;
+		this.countryService = countryService;
+		this.carModelRepository = carModelRepository;
+	}
 
 	@PostConstruct
 	private void initializeSession() {
 		this.kieSession = kieContainer.newKieSession("rules-session");
+		
+		// set global variables
+		this.kieSession.setGlobal("carModelRepository", this.carModelRepository);
 
 		// populate session with facts about car models
-		List<CarModel> carModels = this.carModelService.findAll();
+		List<CarModel> carModels = this.carModelRepository.findAll();
 		for (CarModel carModel : carModels) {
 			this.kieSession.insert(carModel);
 		}
@@ -83,6 +91,7 @@ public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
 		// Run rules to generate recommendations according to generated observations and
 		// query data
 		Agenda agenda = this.kieSession.getAgenda();
+		agenda.getAgendaGroup("trending").setFocus();
 		agenda.getAgendaGroup("recommendations").setFocus();
 		agenda.getAgendaGroup("conformances to user").setFocus();
 		this.kieSession.fireAllRules();
@@ -111,6 +120,8 @@ public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
 
 		// Remove query data from session so next query can be accepted
 		this.kieSession.delete(queryHandle);
+		
+		
 
 		return result;
 	}

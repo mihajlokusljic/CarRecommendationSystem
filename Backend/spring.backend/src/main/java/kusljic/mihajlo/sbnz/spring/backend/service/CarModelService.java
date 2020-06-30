@@ -20,5 +20,7 @@ public interface CarModelService {
 	CarModel update(CarModel carModel);
 	
 	void delete(Long carModelId);
+	
+	Page<CarModel> findTrendingCarModels(Pageable pageable);
 
 }

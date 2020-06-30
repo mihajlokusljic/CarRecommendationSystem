@@ -64,6 +64,17 @@ public class CarModelController {
 		Page<CarModelDTO> result = new PageImpl<CarModelDTO>(content, models.getPageable(), models.getTotalElements());
 		return new ResponseEntity<Page<CarModelDTO>>(result, HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/trending")
+	public ResponseEntity<Page<CarModelDTO>> getTrendingCarModels(Pageable page) {
+		Page<CarModel> models = this.carModelService.findTrendingCarModels(page);
+		List<CarModelDTO> content = new ArrayList<CarModelDTO>();
+		for (CarModel carModel : models) {
+			content.add(new CarModelDTO(carModel));
+		}
+		Page<CarModelDTO> result = new PageImpl<CarModelDTO>(content, models.getPageable(), models.getTotalElements());
+		return new ResponseEntity<Page<CarModelDTO>>(result, HttpStatus.OK);
+	}
 
 	@PostMapping
 	@PreAuthorize("hasRole('ADMINISTRATOR')")

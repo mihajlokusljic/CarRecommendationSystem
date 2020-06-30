@@ -80,6 +80,11 @@ public class CarModelServiceImpl implements CarModelService {
 		return this.carModelRepository.findAll(page);
 	}
 	
+	@Override
+	public Page<CarModel> findTrendingCarModels(Pageable pageable) {
+		return this.carModelRepository.findAllByTrendingOrderByManufacturerNameAscNameAsc(true, pageable);
+	}
+	
 	private void checkCarModelData(CarModel carModel) {
 		if(carModel.getBasePriceEuros() <= 0) {
 			throw new InvalidFieldException("Base price must be greater than zero.");

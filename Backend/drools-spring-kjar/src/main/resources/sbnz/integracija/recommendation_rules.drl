@@ -1,10 +1,13 @@
 package sbnz.integracija;
 
+import java.util.Date;
+
 import kusljic.mihajlo.sbnz.spring.backend.facts.CarModel;
 import kusljic.mihajlo.sbnz.spring.backend.facts.RecommendationQuery;
 import kusljic.mihajlo.sbnz.spring.backend.facts.Conformance;
 import kusljic.mihajlo.sbnz.spring.backend.facts.ConformanceType;
 import kusljic.mihajlo.sbnz.spring.backend.facts.Recommendation;
+import kusljic.mihajlo.sbnz.spring.backend.facts.RecommendationHistory;
 
 rule "Highly recommend"
 	agenda-group "recommendations"
@@ -18,6 +21,7 @@ rule "Highly recommend"
 	then
 		double score = 0.45 * $budgetScore + 0.40 * $needsScore + 0.15 * $maintenanceScore;
 		insert( new Recommendation($m, score) );
+		insert( new RecommendationHistory($m, new Date()) );
 		System.out.println($m + " is recommended with score: " + score);
 end;
 
@@ -32,5 +36,6 @@ rule "Recommend"
 	then
 		double score = 0.45 * $budgetScore + 0.40 * $needsScore;
 		insert( new Recommendation($m, score) );
+		insert( new RecommendationHistory($m, new Date()) );
 		System.out.println($m + " is recommended with score: " + score);
 end;

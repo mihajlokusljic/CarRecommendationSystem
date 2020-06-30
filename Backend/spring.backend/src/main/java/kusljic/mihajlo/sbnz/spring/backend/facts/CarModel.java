@@ -80,6 +80,9 @@ public class CarModel {
 	@Enumerated(EnumType.STRING)
 	private Transmission transmission;
 	
+	@Column(name = "trending", nullable = false, columnDefinition = "boolean default false")
+	private boolean trending = false;
+	
 	@Column(name = "type", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private CarType type;
@@ -259,6 +262,14 @@ public class CarModel {
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+
+	public boolean isTrending() {
+		return trending;
+	}
+
+	public void setTrending(boolean trending) {
+		this.trending = trending;
 	}
 	
 }
