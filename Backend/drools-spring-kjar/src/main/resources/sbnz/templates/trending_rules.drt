@@ -1,15 +1,23 @@
+template header
+timeWindow
+minimumRecommendations
+
 package sbnz.integracija;
+
 import kusljic.mihajlo.sbnz.spring.backend.facts.CarModel;
 import kusljic.mihajlo.sbnz.spring.backend.facts.RecommendationHistory;
 import kusljic.mihajlo.sbnz.spring.backend.repository.CarModelRepository;
+
 global CarModelRepository carModelRepository;
+
+template "trending rules definition"
 
 rule "Set trending car models"
 	agenda-group "trending"
 	when 
 		$m: CarModel(trending == false)
-		Number(intValue >= 5) from accumulate (
-			$rh: RecommendationHistory(carModel == $m) over window:time( 14d ),
+		Number(intValue >= @{minimumRecommendations}) from accumulate (
+			$rh: RecommendationHistory(carModel == $m) over window:time( @{timeWindow} ),
 			count($rh)
 		)
 	then
@@ -18,12 +26,13 @@ rule "Set trending car models"
 		carModelRepository.save($m);
 		System.out.println($m + " is now trending.");
 end;
+
 rule "Set non-trending car models"
 	agenda-group "trending"
 	when 
 		$m: CarModel(trending == true)
-		Number(intValue < 5) from accumulate (
-			$rh: RecommendationHistory(carModel == $m) over window:time( 14d ),
+		Number(intValue < @{minimumRecommendations}) from accumulate (
+			$rh: RecommendationHistory(carModel == $m) over window:time( @{timeWindow} ),
 			count($rh)
 		)
 	then
@@ -33,4 +42,4 @@ rule "Set non-trending car models"
 		System.out.println($m + " is no longer trending.");
 end;
 
-
+end template

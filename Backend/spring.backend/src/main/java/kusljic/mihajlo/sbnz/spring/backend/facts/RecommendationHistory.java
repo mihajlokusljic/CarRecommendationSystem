@@ -8,7 +8,7 @@ import org.kie.api.definition.type.Timestamp;
 
 @Role(Role.Type.EVENT)
 @Timestamp("timestamp")
-@Expires("5d")
+@Expires("31d")
 public class RecommendationHistory {
 	
 	private CarModel carModel;
