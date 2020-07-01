@@ -1,0 +1,44 @@
+<h2 *ngIf="constraintIsSet">
+    Current requirements: A car model needs to have at least {{ currentConstraint.minimumRecommendations }} recommendations 
+    in the last {{ currentConstraint.previousDaysCount }} days to be considered trending.
+</h2>
+
+<h2 *ngIf="!constraintIsSet">
+    There are no defined requirements for a car model to be considered trending.
+</h2>
+
+<h2>
+    Configure new trending requirements:
+</h2>
+<div>
+    <form [formGroup]="trendingConstraintForm" (ngSubmit)="onSubmit()">
+        <mat-grid-list cols="1" rowHeight="12vh">
+            <mat-grid-tile class="tile-left-aligned">
+              <mat-form-field class="input" [style.fontSize.px]=17>
+                <mat-label>Number of previous days</mat-label>
+                <input matInput type="number" id="daysCount" formControlName="daysCount">
+                <mat-error>Number of previous days must be a number between 1 and 31</mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile class="tile-left-aligned">
+              <mat-form-field class="input" [style.fontSize.px]=17>
+                <mat-label>Minimum number of recommendations</mat-label>
+                <input matInput type="number" id="recommendationsCount" formControlName="minRecommendations">
+                <mat-error>Minimum number of recommendations must be a positive number</mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile class="tile-left-aligned">
+                <h2>
+                    New requirements:  A car model needs to have at least {{ minRecommendations.value }} recommendations 
+                    in the last {{ daysCount.value }} days to be considered trending.
+                </h2>
+            </mat-grid-tile>
+            <mat-grid-tile class="tile-left-aligned" *ngIf="!processing">
+                <button id="submitBtn" mat-raised-button color="primary" [disabled]="!trendingConstraintForm.valid">Save new trending requirements</button>
+            </mat-grid-tile>
+            <mat-grid-tile class="tile-left-aligned" *ngIf="processing">
+                <h2>Processing...</h2>
+            </mat-grid-tile>
+        </mat-grid-list>          
+    </form>
+</div>

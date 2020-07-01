@@ -18,5 +18,7 @@ public interface KnowledgeEngineService {
 	CarModel processNewCarModel(CarModel newModel);
 	
 	boolean removeCarModelData(CarModel modelToRemove);
+	
+	void fireRules();
 
 }

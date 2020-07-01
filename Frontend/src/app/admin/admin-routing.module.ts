@@ -4,6 +4,7 @@ import { CarManufacturersComponent } from './components/car-manufacturers/car-ma
 import { AddCarManufacturerComponent } from './components/add-car-manufacturer/add-car-manufacturer.component';
 import { CarModelsComponent } from './components/car-models/car-models.component';
 import { AddCarModelComponent } from './components/add-car-model/add-car-model.component';
+import { TrendingConstraintConfigComponent } from './components/trending-constraint-config/trending-constraint-config.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'admin/addModel',
     component: AddCarModelComponent
+  },
+  {
+    path: 'admin/trendingConstraint',
+    component: TrendingConstraintConfigComponent
   }
 ];
 

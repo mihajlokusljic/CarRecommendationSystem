@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ import kusljic.mihajlo.sbnz.spring.backend.service.TrendingConstraintService;
 
 @RestController
 @RequestMapping(value = "/api/trending-constraint")
+@CrossOrigin
 public class TrendingConstraintController {
 	
 	private TrendingConstraintService trendingConstraintService;

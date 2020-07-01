@@ -1,0 +1,14 @@
+.tile-right-aligned > ::ng-deep figure {
+    justify-content: flex-end !important;
+    overflow: auto !important;
+    margin-right: 30px;
+}
+
+.tile-left-aligned > ::ng-deep figure {
+    justify-content: flex-start !important;
+    margin-left: 30px;
+}
+
+.formButton {
+    margin-left: 15px;
+}

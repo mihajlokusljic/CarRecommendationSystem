@@ -1,0 +1,9 @@
+.tile-left-aligned > ::ng-deep figure {
+    justify-content: flex-start !important;
+    align-items: start !important;
+    overflow: auto !important;
+}
+
+.input {
+    width: 95%;
+}

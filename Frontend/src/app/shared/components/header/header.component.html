@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
         <button mat-button routerLink="/recommendations">Car for you</button>
+        <button mat-button routerLink="/trendingModels">Trending cars</button>
         <div *ngIf="isAuthenticated()">
             <button mat-button routerLink="/admin/carManufacturers">Car manufacturers</button>
             <button mat-button routerLink="/admin/carModels">Car models</button>

@@ -1,0 +1,19 @@
+<mat-card>
+    <mat-grid-list cols="5" rowHeight="70px">
+        <mat-grid-tile colspan="2" rowspan="4">
+            <img mat-card-image src="../../../../assets/images/defaultCar.png" alt="Error loading image">
+        </mat-grid-tile>
+        <mat-grid-tile colspan="3" class="tile-left-aligned">
+            <h1>{{ carModel.manufacturerName }} {{ carModel.name }}</h1>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="3" class="tile-left-aligned">
+            <h2>{{ carModel.type }}</h2>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="3" class="tile-left-aligned">
+            <h2>{{ carModel.basePriceEuros }} €</h2>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="3" class="tile-right-aligned">
+            <button mat-raised-button color="primary">More details</button>
+        </mat-grid-tile>
+    </mat-grid-list>      
+</mat-card>

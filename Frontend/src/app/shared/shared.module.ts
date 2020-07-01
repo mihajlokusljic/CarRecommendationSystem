@@ -1,3 +1,4 @@
+import { PaginationComponent } from './components/pagination/pagination.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -12,9 +13,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatSelectModule } from '@angular/material/select'; 
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RecommendationFormComponent } from './components/recommendation-form/recommendation-form.component';
@@ -24,6 +26,8 @@ import { RecommendationsListComponent } from './components/recommendations-list/
 import { LoginComponent } from './components/login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
+import { CarModelCardComponent } from './components/car-model-card/car-model-card.component';
+import { TrendingModelsComponent } from './components/trending-models/trending-models.component';
 
 
 @NgModule({
@@ -33,6 +37,9 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
     RecommendationsComponent,
     RecommendationsListComponent,
     LoginComponent,
+    CarModelCardComponent,
+    TrendingModelsComponent,
+    PaginationComponent
   ],
   imports:
   [
@@ -48,6 +55,7 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
     MatGridListModule,
     MatInputModule,
     MatListModule,
+    MatPaginatorModule,
     MatProgressSpinnerModule,
     MatRadioModule,
     MatSelectModule,
@@ -75,11 +83,13 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
     MatGridListModule,
     MatInputModule,
     MatListModule,
+    MatPaginatorModule,
     MatProgressSpinnerModule,
     MatRadioModule,
     MatSelectModule,
     MatSnackBarModule,
-    MatToolbarModule
+    MatToolbarModule,
+    PaginationComponent
   ]
 })
 export class SharedModule { }

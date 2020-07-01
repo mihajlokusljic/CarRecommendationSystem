@@ -1,3 +1,4 @@
+import { TrendingModelsComponent } from './components/trending-models/trending-models.component';
 import { LoginComponent } from './components/login/login.component';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'admin/login',
     component: LoginComponent
+  },
+  {
+    path: 'trendingModels',
+    component: TrendingModelsComponent
   },
   {
     path: '',

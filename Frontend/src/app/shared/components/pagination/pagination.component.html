@@ -1,0 +1,6 @@
+<mat-paginator [length]="pagingInfo.totalItemsFound"
+              [pageSize]="pagingInfo.selectedPageSize"
+              [pageSizeOptions]="pageSizeOptions"
+              [pageIndex]="pagingInfo.selectedPageIndex"
+              (page)="onPagingChanged($event)">
+</mat-paginator>

@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import kusljic.mihajlo.sbnz.spring.backend.facts.TrendingConstraint;
 import kusljic.mihajlo.sbnz.spring.backend.repository.TrendingConstraintRepository;
+import kusljic.mihajlo.sbnz.spring.backend.service.KnowledgeEngineService;
 import kusljic.mihajlo.sbnz.spring.backend.service.TrendingConstraintService;
 
 @Service
@@ -28,12 +29,15 @@ public class TrendingConstraintServiceImpl implements TrendingConstraintService 
 
 	private static final String TRENDING_RULES_TEMPLATE_PATH = "..\\drools-spring-kjar\\src\\main\\resources\\sbnz\\templates\\trending_rules.drt";
 	private static final String TRENDING_RULES_FILE_PATH = "..\\drools-spring-kjar\\src\\main\\resources\\sbnz\\integracija\\trending_rules.drl";
+	private KnowledgeEngineService knowledgeEngineService;
 	private TrendingConstraintRepository trendingConstraintRepository;
 	
+	
 	@Autowired
-	public TrendingConstraintServiceImpl(TrendingConstraintRepository trendingConstraintRepository) {
+	public TrendingConstraintServiceImpl(TrendingConstraintRepository trendingConstraintRepository, KnowledgeEngineService knowledgeEngineService) {
 		super();
 		this.trendingConstraintRepository = trendingConstraintRepository;
+		this.knowledgeEngineService = knowledgeEngineService;
 	}
 
 	@Override
@@ -47,6 +51,7 @@ public class TrendingConstraintServiceImpl implements TrendingConstraintService 
 		}
 		
 		this.updateTrendingRules(newConstraint);
+		this.knowledgeEngineService.fireRules();
 		return this.trendingConstraintRepository.save(currentConstraint);
 	}
 

@@ -180,9 +180,15 @@ public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
 		return true;
 	}
 	
+	@Override
+	public void fireRules() {
+		this.kieSession.fireAllRules();
+	}
+	
 	@PreDestroy
 	private void releaseSession() {
 		this.kieSession.dispose();
 	}
+
 
 }

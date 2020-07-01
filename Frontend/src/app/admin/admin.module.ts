@@ -8,6 +8,7 @@ import { AddCarManufacturerComponent } from './components/add-car-manufacturer/a
 import { CarModelsComponent } from './components/car-models/car-models.component';
 import { AddCarModelComponent } from './components/add-car-model/add-car-model.component';
 import { MatStepperModule } from '@angular/material/stepper';
+import { TrendingConstraintConfigComponent } from './components/trending-constraint-config/trending-constraint-config.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { MatStepperModule } from '@angular/material/stepper';
     CarManufacturersComponent,
     AddCarManufacturerComponent,
     CarModelsComponent,
-    AddCarModelComponent
+    AddCarModelComponent,
+    TrendingConstraintConfigComponent
   ],
   imports: [
     CommonModule,
