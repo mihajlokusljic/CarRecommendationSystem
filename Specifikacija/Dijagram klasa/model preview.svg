@@ -2,35 +2,40 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="450mm" xmlns="http://www.w3.org/2000/svg" height="257mm" version="1.1" viewBox="0 0 1704 973" xmlns:xlink="http://www.w3.org/1999/xlink">
    <polyline fill="none" points="912,573 1073,573 1073,571 1099,571" stroke="#0080ff" stroke-width="1"/>
-   <text x="958" y="571" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">*</text>
-   <text x="958" y="581" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">carModels</text>
-   <text x="1041" y="569" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">1..1</text>
-   <text x="1041" y="579" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">manufacturer</text>
+   <text x="957" y="571" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">*</text>
+   <text x="957" y="581" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">carModels</text>
+   <text x="1042" y="569" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">1..1</text>
+   <text x="1042" y="579" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">manufacturer</text>
    <polyline fill="none" points="1234,573 1458,573" stroke="#0080ff" stroke-width="1"/>
-   <text x="1301" y="570" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">*</text>
-   <text x="1301" y="580" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">basedManufacturers</text>
+   <text x="1300" y="570" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">*</text>
+   <text x="1300" y="580" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">basedManufacturers</text>
    <text x="1396" y="570" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">1..1</text>
    <text x="1396" y="580" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">countryOfOrigin</text>
-   <polyline fill="none" points="461,473 689,473" stroke="#0080ff" stroke-width="1"/>
-   <polyline fill="none" points="667,477 680,473 667,469" stroke="#0080ff" stroke-width="1"/>
-   <text x="488" y="468" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">*</text>
-   <text x="637" y="470" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">1..1</text>
-   <text x="637" y="480" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">carModel</text>
-   <polyline fill="none" points="455,625 568,625 568,625 689,625" stroke="#0080ff" stroke-width="1"/>
-   <polyline fill="none" points="667,629 680,625 667,621" stroke="#0080ff" stroke-width="1"/>
-   <text x="477" y="620" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">*</text>
-   <text x="637" y="623" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">1..1</text>
-   <text x="637" y="633" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">carModel</text>
-   <polyline fill="none" points="450,727 702,727" stroke="#0080ff" stroke-width="1"/>
-   <polyline fill="none" points="667,731 680,727 667,723" stroke="#0080ff" stroke-width="1"/>
-   <text x="478" y="722" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">*</text>
-   <text x="637" y="724" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">1..1</text>
-   <text x="637" y="734" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">carModel</text>
+   <polyline fill="none" points="461,451 689,451" stroke="#0080ff" stroke-width="1"/>
+   <polyline fill="none" points="667,455 680,451 667,447" stroke="#0080ff" stroke-width="1"/>
+   <text x="488" y="446" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">*</text>
+   <text x="637" y="449" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">1..1</text>
+   <text x="637" y="459" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">carModel</text>
+   <polyline fill="none" points="455,564 568,564 568,565 689,565" stroke="#0080ff" stroke-width="1"/>
+   <polyline fill="none" points="667,569 680,565 667,561" stroke="#0080ff" stroke-width="1"/>
+   <text x="477" y="559" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">*</text>
+   <text x="637" y="563" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">1..1</text>
+   <text x="637" y="573" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">carModel</text>
+   <polyline fill="none" points="450,660 702,660" stroke="#0080ff" stroke-width="1"/>
+   <polyline fill="none" points="667,664 680,660 667,656" stroke="#0080ff" stroke-width="1"/>
+   <text x="478" y="655" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">*</text>
+   <text x="637" y="658" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">1..1</text>
+   <text x="637" y="668" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">carModel</text>
    <polyline fill="none" points="443,328 1589,328 1589,524" stroke="#0080ff" stroke-width="1"/>
    <polyline fill="none" points="1585,498 1589,511 1593,498" stroke="#0080ff" stroke-width="1"/>
    <text x="583" y="323" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">*</text>
    <text x="1555" y="493" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">1..*</text>
    <text x="1555" y="503" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">usersCountry</text>
+   <polyline fill="none" points="447,741 712,741" stroke="#0080ff" stroke-width="1"/>
+   <polyline fill="none" points="667,745 680,741 667,737" stroke="#0080ff" stroke-width="1"/>
+   <text x="476" y="736" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">*</text>
+   <text x="637" y="738" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">1..1</text>
+   <text x="637" y="748" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">carModel</text>
    <defs>
       <linearGradient id="Gradient1" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
          <stop offset="5%" stop-color="#ffffff"/>
@@ -60,6 +65,7 @@
    <text x="684" y="670" fill="#000000" font-size="10" font-family="Arial">-</text>
    <text x="684" y="683" fill="#000000" font-size="10" font-family="Arial">-</text>
    <text x="684" y="696" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="684" y="709" fill="#000000" font-size="10" font-family="Arial">-</text>
    <text x="695" y="450" fill="#000000" font-size="10" font-family="Arial">id</text>
    <text x="695" y="463" fill="#000000" font-size="10" font-family="Arial">basePriceEuros</text>
    <text x="695" y="476" fill="#000000" font-size="10" font-family="Arial">bluetoothConnective</text>
@@ -80,6 +86,7 @@
    <text x="695" y="670" fill="#000000" font-size="10" font-family="Arial">topSpeedKmh</text>
    <text x="695" y="683" fill="#000000" font-size="10" font-family="Arial">transmission</text>
    <text x="695" y="696" fill="#000000" font-size="10" font-family="Arial">type</text>
+   <text x="695" y="709" fill="#000000" font-size="10" font-family="Arial">trending</text>
    <text x="833" y="450" fill="#000000" font-size="10" font-family="Arial">: Long</text>
    <text x="833" y="463" fill="#000000" font-size="10" font-family="Arial">: int</text>
    <text x="833" y="476" fill="#000000" font-size="10" font-family="Arial">: boolean</text>
@@ -100,7 +107,8 @@
    <text x="833" y="670" fill="#000000" font-size="10" font-family="Arial">: int</text>
    <text x="833" y="683" fill="#000000" font-size="10" font-family="Arial">: Transmission</text>
    <text x="833" y="696" fill="#000000" font-size="10" font-family="Arial">: CarType</text>
-   <line x1="680" x2="914" y1="703" y2="703" stroke="#0080ff" stroke-width="1"/>
+   <text x="833" y="709" fill="#000000" font-size="10" font-family="Arial">: boolean</text>
+   <line x1="680" x2="914" y1="716" y2="716" stroke="#0080ff" stroke-width="1"/>
    <defs>
       <linearGradient id="Gradient2" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
          <stop offset="5%" stop-color="#ffffff"/>
@@ -229,16 +237,16 @@
          <stop offset="95%" stop-color="#aee4ff"/>
       </linearGradient>
    </defs>
-   <rect x="323" y="435" fill="url(#Gradient7)" width="143" height="68" stroke="#0080ff" stroke-width="1"/>
-   <text x="393" y="446" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">Observation</text>
-   <line x1="323" x2="466" y1="454" y2="454" stroke="#0080ff" stroke-width="1"/>
-   <text x="327" y="464" fill="#000000" font-size="10" font-family="Arial">-</text>
-   <text x="327" y="477" fill="#000000" font-size="10" font-family="Arial">-</text>
-   <text x="338" y="464" fill="#000000" font-size="10" font-family="Arial">score</text>
-   <text x="338" y="477" fill="#000000" font-size="10" font-family="Arial">type</text>
-   <text x="370" y="464" fill="#000000" font-size="10" font-family="Arial">: double</text>
-   <text x="370" y="477" fill="#000000" font-size="10" font-family="Arial">: ObservationType</text>
-   <line x1="323" x2="466" y1="484" y2="484" stroke="#0080ff" stroke-width="1"/>
+   <rect x="323" y="408" fill="url(#Gradient7)" width="143" height="68" stroke="#0080ff" stroke-width="1"/>
+   <text x="393" y="419" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">Observation</text>
+   <line x1="323" x2="466" y1="427" y2="427" stroke="#0080ff" stroke-width="1"/>
+   <text x="327" y="437" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="327" y="450" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="338" y="437" fill="#000000" font-size="10" font-family="Arial">score</text>
+   <text x="338" y="450" fill="#000000" font-size="10" font-family="Arial">type</text>
+   <text x="370" y="437" fill="#000000" font-size="10" font-family="Arial">: double</text>
+   <text x="370" y="450" fill="#000000" font-size="10" font-family="Arial">: ObservationType</text>
+   <line x1="323" x2="466" y1="457" y2="457" stroke="#0080ff" stroke-width="1"/>
    <defs>
       <linearGradient id="Gradient8" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
          <stop offset="5%" stop-color="#ffffff"/>
@@ -286,16 +294,16 @@
          <stop offset="95%" stop-color="#aee4ff"/>
       </linearGradient>
    </defs>
-   <rect x="325" y="593" fill="url(#Gradient9)" width="130" height="68" stroke="#0080ff" stroke-width="1"/>
-   <text x="389" y="604" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">Conformance</text>
-   <line x1="325" x2="455" y1="612" y2="612" stroke="#0080ff" stroke-width="1"/>
-   <text x="329" y="622" fill="#000000" font-size="10" font-family="Arial">-</text>
-   <text x="329" y="635" fill="#000000" font-size="10" font-family="Arial">-</text>
-   <text x="340" y="622" fill="#000000" font-size="10" font-family="Arial">score</text>
-   <text x="340" y="635" fill="#000000" font-size="10" font-family="Arial">type</text>
-   <text x="372" y="622" fill="#000000" font-size="10" font-family="Arial">: double</text>
-   <text x="372" y="635" fill="#000000" font-size="10" font-family="Arial">: ConformanceType</text>
-   <line x1="325" x2="455" y1="642" y2="642" stroke="#0080ff" stroke-width="1"/>
+   <rect x="325" y="532" fill="url(#Gradient9)" width="130" height="68" stroke="#0080ff" stroke-width="1"/>
+   <text x="389" y="543" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">Conformance</text>
+   <line x1="325" x2="455" y1="551" y2="551" stroke="#0080ff" stroke-width="1"/>
+   <text x="329" y="561" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="329" y="574" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="340" y="561" fill="#000000" font-size="10" font-family="Arial">score</text>
+   <text x="340" y="574" fill="#000000" font-size="10" font-family="Arial">type</text>
+   <text x="372" y="561" fill="#000000" font-size="10" font-family="Arial">: double</text>
+   <text x="372" y="574" fill="#000000" font-size="10" font-family="Arial">: ConformanceType</text>
+   <line x1="325" x2="455" y1="581" y2="581" stroke="#0080ff" stroke-width="1"/>
    <defs>
       <linearGradient id="Gradient10" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
          <stop offset="5%" stop-color="#ffffff"/>
@@ -325,13 +333,13 @@
          <stop offset="95%" stop-color="#aee4ff"/>
       </linearGradient>
    </defs>
-   <rect x="329" y="706" fill="url(#Gradient11)" width="127" height="55" stroke="#0080ff" stroke-width="1"/>
-   <text x="392" y="717" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">Recommendation</text>
-   <line x1="329" x2="456" y1="725" y2="725" stroke="#0080ff" stroke-width="1"/>
-   <text x="333" y="735" fill="#000000" font-size="10" font-family="Arial">-</text>
-   <text x="344" y="735" fill="#000000" font-size="10" font-family="Arial">score</text>
-   <text x="376" y="735" fill="#000000" font-size="10" font-family="Arial">: double</text>
-   <line x1="329" x2="456" y1="742" y2="742" stroke="#0080ff" stroke-width="1"/>
+   <rect x="329" y="637" fill="url(#Gradient11)" width="127" height="55" stroke="#0080ff" stroke-width="1"/>
+   <text x="392" y="648" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">Recommendation</text>
+   <line x1="329" x2="456" y1="656" y2="656" stroke="#0080ff" stroke-width="1"/>
+   <text x="333" y="666" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="344" y="666" fill="#000000" font-size="10" font-family="Arial">score</text>
+   <text x="376" y="666" fill="#000000" font-size="10" font-family="Arial">: double</text>
+   <line x1="329" x2="456" y1="673" y2="673" stroke="#0080ff" stroke-width="1"/>
    <defs>
       <linearGradient id="Gradient12" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
          <stop offset="5%" stop-color="#ffffff"/>
@@ -387,4 +395,52 @@
    <text x="201" y="62" fill="#000000" font-size="10" font-family="Arial">ADMINISTRATOR</text>
    <text x="294" y="62" fill="#000000" font-size="10" font-family="Arial">: EnumConstant</text>
    <line x1="186" x2="381" y1="69" y2="69" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient15" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="6" y="814" fill="url(#Gradient15)" width="127" height="81" stroke="#0080ff" stroke-width="1"/>
+   <text x="68" y="825" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">LoginAttempt</text>
+   <line x1="6" x2="133" y1="833" y2="833" stroke="#0080ff" stroke-width="1"/>
+   <text x="10" y="843" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="10" y="856" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="10" y="869" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="21" y="843" fill="#000000" font-size="10" font-family="Arial">username</text>
+   <text x="21" y="856" fill="#000000" font-size="10" font-family="Arial">timestamp</text>
+   <text x="21" y="869" fill="#000000" font-size="10" font-family="Arial">successful</text>
+   <text x="78" y="843" fill="#000000" font-size="10" font-family="Arial">: String</text>
+   <text x="78" y="856" fill="#000000" font-size="10" font-family="Arial">: Date</text>
+   <text x="78" y="869" fill="#000000" font-size="10" font-family="Arial">: boolean</text>
+   <line x1="6" x2="133" y1="876" y2="876" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient16" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="159" y="812" fill="url(#Gradient16)" width="113" height="68" stroke="#0080ff" stroke-width="1"/>
+   <text x="214" y="823" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">AccountLock</text>
+   <line x1="159" x2="272" y1="831" y2="831" stroke="#0080ff" stroke-width="1"/>
+   <text x="163" y="841" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="163" y="854" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="174" y="841" fill="#000000" font-size="10" font-family="Arial">username</text>
+   <text x="174" y="854" fill="#000000" font-size="10" font-family="Arial">lockedOn</text>
+   <text x="228" y="841" fill="#000000" font-size="10" font-family="Arial">: String</text>
+   <text x="228" y="854" fill="#000000" font-size="10" font-family="Arial">: Date</text>
+   <line x1="159" x2="272" y1="861" y2="861" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient17" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="331" y="716" fill="url(#Gradient17)" width="123" height="55" stroke="#0080ff" stroke-width="1"/>
+   <text x="391" y="727" fill="#000000" font-size="10" font-family="Arial" text-anchor="middle">RecommendationHistory</text>
+   <line x1="331" x2="454" y1="735" y2="735" stroke="#0080ff" stroke-width="1"/>
+   <text x="335" y="745" fill="#000000" font-size="10" font-family="Arial">-</text>
+   <text x="346" y="745" fill="#000000" font-size="10" font-family="Arial">timestamp</text>
+   <text x="403" y="745" fill="#000000" font-size="10" font-family="Arial">: Date</text>
+   <line x1="331" x2="454" y1="752" y2="752" stroke="#0080ff" stroke-width="1"/>
 </svg>
