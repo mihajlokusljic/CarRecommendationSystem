@@ -87,7 +87,7 @@ rule "City friendly score 80"
 		System.out.println($m + " is city friendly.");
 end;
 
-rule "City friendly score 50"
+rule "City friendly score 40"
 	agenda-group "global observations"
 	salience 1
 	when 

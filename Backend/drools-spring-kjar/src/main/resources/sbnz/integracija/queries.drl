@@ -4,10 +4,15 @@ import kusljic.mihajlo.sbnz.spring.backend.facts.AccountLock;
 import kusljic.mihajlo.sbnz.spring.backend.facts.CarModel;
 import kusljic.mihajlo.sbnz.spring.backend.facts.Conformance;
 import kusljic.mihajlo.sbnz.spring.backend.facts.Observation;
+import kusljic.mihajlo.sbnz.spring.backend.facts.ObservationType;
 import kusljic.mihajlo.sbnz.spring.backend.facts.Recommendation
 
 query "Fetch observations for car model" (CarModel $model)
 	$o: Observation(carModel == $model)
+end
+
+query "Fetch observations for car model and observation type" (CarModel $model, ObservationType $type)
+	$o: Observation(carModel == $model, type == $type)
 end
 
 query "Fetch car model" (CarModel $model)
