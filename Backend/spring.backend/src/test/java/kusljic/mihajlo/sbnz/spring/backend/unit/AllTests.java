@@ -8,7 +8,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 	ObservationRulesTest.class,
 	ConformanceRulesTest.class,
-	RecommendationRulesTest.class
+	RecommendationRulesTest.class,
+	BruteForcePreventionRulesTest.class
 })
 public class AllTests {
 
