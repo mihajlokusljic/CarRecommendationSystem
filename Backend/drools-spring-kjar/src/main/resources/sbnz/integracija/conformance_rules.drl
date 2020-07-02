@@ -32,7 +32,7 @@ rule "Servicing friendly score 100"
 	salience 4
 	when
 		$rq: RecommendationQuery($country: usersCountry)
-		$m: CarModel(type != CarType.COUPE, manufacturer.countryOfOrigin.getDistanceTo($country) == 0)
+		$m: CarModel(type != CarType.COUPE, manufacturer.countryOfOrigin.getDistanceTo($country) < 1)
 		not Conformance(type == ConformanceType.SERVICING_FRIENLDY, carModel == $m, score >= 100)
 	then
 		insert( new Conformance(ConformanceType.SERVICING_FRIENLDY, $m, 100) );
@@ -76,7 +76,7 @@ rule "Maintenance friendly"
 		System.out.println($m + " is maintenance friendly.");
 end;
 
-rule "Setisfies needs"
+rule "Satisfies needs"
 	agenda-group "conformances to user"
 	salience 1
 	when 

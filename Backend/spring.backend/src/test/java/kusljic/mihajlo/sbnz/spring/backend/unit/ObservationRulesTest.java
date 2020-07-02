@@ -41,7 +41,8 @@ public class ObservationRulesTest {
 	
 	@Test
 	public void begginerFriendlyScore100() {
-		// type == CarType.MICRO || type == CarType.HATCHBACK, havingParkingSensors, havingRearCamera, havingNavigationSystem, transmission == Transmission.AUTOMATIC
+		// type == CarType.MICRO || type == CarType.HATCHBACK, havingParkingSensors, havingRearCamera, 
+		// havingNavigationSystem, transmission == Transmission.AUTOMATIC
 		CarModel positive = this.initUnfriendlyCar();
 		positive.setType(CarType.HATCHBACK);
 		positive.setHavingParkingSensors(true);
@@ -54,7 +55,8 @@ public class ObservationRulesTest {
 	
 	@Test
 	public void begginerFriendlyScore70() {
-		// type == CarType.MICRO || type == CarType.HATCHBACK || type == CarType.SEDAN, havingParkingSensors, havingRearCamera
+		// type == CarType.MICRO || type == CarType.HATCHBACK || type == CarType.SEDAN, havingParkingSensors, 
+		// havingRearCamera
 		CarModel positive = this.initUnfriendlyCar();
 		positive.setType(CarType.SEDAN);
 		positive.setHavingParkingSensors(true);
@@ -189,7 +191,8 @@ public class ObservationRulesTest {
 	
 	@Test
 	public void travelFriendlyScore100() {
-		// type == CarType.MINIVAN || type == CarType.WAGON,  bootCapacityLitres > 400, mileage > 20, havingNavigationSystem
+		// type == CarType.MINIVAN || type == CarType.WAGON,  bootCapacityLitres > 400, mileage > 20, 
+		// havingNavigationSystem
 		CarModel positive = this.initUnfriendlyCar();
 		positive.setType(CarType.MINIVAN);
 		positive.setBootCapacityLitres(420);
