@@ -20,6 +20,13 @@ export class CarModelService {
     return this.httpClient.post<CarModelDTO>(this.baseUrl, newCarModel);
   }
 
+  public getCarModelsByPage(pageIndex: number, pageSize: number): Observable<CarModelPage> {
+    let params = new HttpParams();
+    params = params.set('page', pageIndex.toString());
+    params = params.set('size', pageSize.toString());
+    return this.httpClient.get<CarModelPage>(this.baseUrl, { params });
+  }
+
   public getCarModelDetails(id: number): Observable<CarModelDTO> {
     return this.httpClient.get<CarModelDTO>(`${this.baseUrl}/${id}`);
   }
@@ -29,5 +36,13 @@ export class CarModelService {
     params = params.set('page', page.toString());
     params = params.set('size', size.toString());
     return this.httpClient.get<CarModelPage>(`${this.baseUrl}/trending`, { params });
+  }
+
+  public editCarModel(newModelData: CarModelDTO): Observable<CarModelDTO> {
+    return this.httpClient.put<CarModelDTO>(this.baseUrl, newModelData);
+  }
+
+  public deleteCarModel(id: number) {
+    return this.httpClient.delete(`${this.baseUrl}/${id}`);
   }
 }

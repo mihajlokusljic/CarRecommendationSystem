@@ -20,6 +20,7 @@ export class TrendingModelsComponent implements OnInit {
   private currentUserRole = UserRole.UNREGISTERED;
   private showingDetails = false;
   private selectedModelId;
+  private dataFound = false;
 
   constructor(
     private carModelService: CarModelService,
@@ -43,6 +44,7 @@ export class TrendingModelsComponent implements OnInit {
         this.carModels = result.content;
         this.pagingInfo.totalPages = result.totalPages;
         this.pagingInfo.totalItemsFound = result.totalElements;
+        this.dataFound = this.carModels.length > 0;
       }
     );
   }

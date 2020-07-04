@@ -1,3 +1,4 @@
+import { EditCarModelComponent } from './components/edit-car-model/edit-car-model.component';
 import { EditCarManufacturerComponent } from './components/edit-car-manufacturer/edit-car-manufacturer.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'admin/addModel',
     component: AddCarModelComponent
+  },
+  {
+    path: 'admin/editModel/:id',
+    component: EditCarModelComponent
   },
   {
     path: 'admin/trendingConstraint',

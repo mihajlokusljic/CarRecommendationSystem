@@ -7,7 +7,15 @@
         <app-car-model-card [carModel]="carModel" (showModelDetailsEvent)="onShowModelDetails($event)"></app-car-model-card>
     </div>
     
-    <app-pagination [pagingInfo]="pagingInfo" (paginationRequestEvent)="onPagingInfoChanged($event)"></app-pagination>
+    <app-pagination *ngIf="dataFound" [pagingInfo]="pagingInfo" (paginationRequestEvent)="onPagingInfoChanged($event)"></app-pagination>
+
+    <div *ngIf="!dataFound">
+        <mat-grid-list cols="1" rowHeight="4:1">
+            <mat-grid-tile>
+                <h1>There are currently no trending car models.</h1>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
 </div>
 
 <div *ngIf="showingDetails">

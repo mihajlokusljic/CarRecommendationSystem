@@ -9,7 +9,7 @@ import kusljic.mihajlo.sbnz.spring.backend.facts.ObservationType;
 import kusljic.mihajlo.sbnz.spring.backend.facts.Recommendation
 
 query "Fetch observations for car model" (CarModel $model)
-	$o: Observation(carModel == $model)
+	$o: Observation(carModel.getId().equals($model.getId()))
 end
 
 query "Fetch observations for car model and observation type" (CarModel $model, ObservationType $type)
@@ -17,7 +17,7 @@ query "Fetch observations for car model and observation type" (CarModel $model, 
 end
 
 query "Fetch car model" (CarModel $model)
-	$cm: CarModel(this == $model)
+	$cm: CarModel(id.equals($model.getId()))
 end
 
 query "Fetch conformances"
@@ -27,7 +27,6 @@ end
 query "Fetch conformances for car model and conformance type" (CarModel $model, ConformanceType $type)
 	$c: Conformance(carModel == $model, type == $type)
 end
-
 
 query "Fetch recommendations"
 	$r: Recommendation()

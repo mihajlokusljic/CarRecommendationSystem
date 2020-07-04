@@ -1,0 +1,34 @@
+.content-wrapper {
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.search-field {
+    width: 80%;
+}
+
+.grayedOut {
+    background-color: #F2F2F2;
+}
+
+.entitiesTable {
+    width: 100%;
+}
+
+.tile-right-aligned > ::ng-deep figure {
+    justify-content: flex-end !important;
+    overflow: auto !important;
+}
+
+.tile-left-aligned > ::ng-deep figure {
+    justify-content: flex-start !important;
+}
+
+.formButton {
+    margin-left: 15px;
+}
+
+.checker {
+    margin-left: 15px;
+}

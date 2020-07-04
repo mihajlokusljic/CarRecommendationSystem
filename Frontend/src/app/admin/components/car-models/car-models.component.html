@@ -1,3 +1,78 @@
 <h1>Car models</h1>
 
 <button id="addModel" mat-raised-button color="primary" routerLink="/admin/addModel">Add car model</button>
+
+<!-- Car models preview -->
+<div class="content-wrapper">
+
+    <!-- Loading data spinner -->
+    <div *ngIf="loadingData">
+        <mat-grid-list cols="1" rowHeight="3:1">
+            <mat-grid-tile>
+                <mat-spinner></mat-spinner>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+
+    <!-- Car models table -->
+    <div class="mat-elevation-z8" *ngIf="dataFound && !loadingData">
+
+        <table mat-table [dataSource]="carModels" class="mat-elevation-z8 entitiesTable">
+
+            <!-- Manufacturer name column -->
+            <ng-container matColumnDef="manufacturerName">
+                <th mat-header-cell *matHeaderCellDef class="grayedOut"> Manufacturer name </th>
+                <td mat-cell *matCellDef="let carModel"> {{carModel.manufacturerName}} </td>
+            </ng-container>
+
+            <!-- Car model name column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef class="grayedOut"> Car model name </th>
+                <td mat-cell *matCellDef="let carModel"> {{carModel.name}} </td>
+            </ng-container>
+
+            <!-- Car type column -->
+            <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef class="grayedOut"> Car type </th>
+                <td mat-cell *matCellDef="let carModel"> {{carModel.type}} </td>
+            </ng-container>
+
+            <!-- Base price column -->
+            <ng-container matColumnDef="basePriceEuros">
+                <th mat-header-cell *matHeaderCellDef class="grayedOut"> Base price in euros </th>
+                <td mat-cell *matCellDef="let carModel"> {{carModel.basePriceEuros}} </td>
+            </ng-container>
+
+            <!-- Actions column -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef class="grayedOut"> Actions </th>
+                <td mat-cell *matCellDef="let carModel">
+                    <button mat-icon-button color="primary" matTooltip="Edit car model" (click)="onEditCarModel(carModel.id)">
+                        <mat-icon aria-label="Edit">edit</mat-icon>
+                    </button>
+
+                    <button mat-icon-button color="primary" matTooltip="Delete car model" (click)="onDeleteCarModel(carModel.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <!-- Pagination -->
+        <mat-paginator [length]="pagingInfo.totalItemsFound" [pageSize]="pagingInfo.selectedPageSize" [pageSizeOptions]="[5, 10, 20]"
+            [pageIndex]="pagingInfo.selectedPageIndex" (page)="onPagingChanged($event)" showFirstLastButtons class="grayedOut">
+        </mat-paginator>
+    </div>
+
+    <!-- No data message -->
+    <div *ngIf="!dataFound && !loadingData">
+        <mat-grid-list cols="1" rowHeight="4:1">
+            <mat-grid-tile>
+                <h1>There are no car models found matching the given criteria.</h1>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>

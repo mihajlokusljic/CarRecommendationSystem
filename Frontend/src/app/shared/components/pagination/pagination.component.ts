@@ -8,7 +8,7 @@ import { PagingInfo } from '../../models/pagingInfo';
 })
 export class PaginationComponent implements OnInit {
 
-  private pageSizeOptions = [5, 10, 15];
+  private pageSizeOptions = [5, 10, 20];
 
   @Input()
   pagingInfo: PagingInfo;

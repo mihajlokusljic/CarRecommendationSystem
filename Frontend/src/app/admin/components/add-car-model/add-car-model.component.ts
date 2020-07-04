@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { CarManufacturerService } from './../../services/car-manufacturer.service';
 import { CarModelDTO } from './../../../shared/models/CarModelDTO';
 import { Component, OnInit } from '@angular/core';
@@ -50,7 +51,8 @@ export class AddCarModelComponent implements OnInit {
   constructor(
     private carModelService: CarModelService,
     private carManufacturerService: CarManufacturerService,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private router: Router
   ) { }
 
   get manufacturer() {
@@ -163,6 +165,7 @@ export class AddCarModelComponent implements OnInit {
     this.carModelService.addCarmodel(newCarModel).subscribe(
       (newModel) => {
         this.snackbarService.displayMessage('Car model was successfully added.');
+        this.router.navigate(['/admin/carModels']);
       },
 
       (error) => {
