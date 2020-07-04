@@ -4,4 +4,5 @@ export interface CarManufacturerDTO {
     logoImageURI?: string;
     countryName?: string;
     countryId: number;
+    canDelete?: boolean;
 }

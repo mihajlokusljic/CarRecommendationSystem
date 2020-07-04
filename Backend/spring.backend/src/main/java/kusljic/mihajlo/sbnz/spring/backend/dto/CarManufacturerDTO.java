@@ -10,17 +10,19 @@ public class CarManufacturerDTO {
 	private String logoImageURI;
 	private String countryName;
 	private Long countryId;
+	private boolean canDelete;
 	
 	public CarManufacturerDTO() {
 		super();
 	}
 	
-	public CarManufacturerDTO(String name, String logoImageURI, Country country) {
+	public CarManufacturerDTO(String name, String logoImageURI, Country country, boolean canDelete) {
 		super();
 		this.name = name;
 		this.logoImageURI = logoImageURI;
 		this.countryId = country.getId();
 		this.countryName = country.getName();
+		this.canDelete = canDelete;
 	}
 	
 	public CarManufacturerDTO(CarManufacturer manufacturer) {
@@ -29,6 +31,7 @@ public class CarManufacturerDTO {
 		this.logoImageURI = manufacturer.getLogoImagePath();
 		this.countryId = manufacturer.getCountryOfOrigin().getId();
 		this.countryName = manufacturer.getCountryOfOrigin().getName();
+		this.canDelete = manufacturer.getCarModels().isEmpty();
 	}
 	
 	public Long getId() {
@@ -69,6 +72,14 @@ public class CarManufacturerDTO {
 
 	public void setCountryId(Long countryId) {
 		this.countryId = countryId;
+	}
+
+	public boolean isCanDelete() {
+		return canDelete;
+	}
+
+	public void setCanDelete(boolean canDelete) {
+		this.canDelete = canDelete;
 	}
 
 }

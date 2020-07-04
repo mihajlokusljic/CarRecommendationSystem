@@ -1,20 +1,11 @@
-.content-wrapper {
-    padding: 20px;
-    margin-bottom: 20px;
-    margin-top: 20px;
+.input-field {
+    width: 90%;
 }
 
-.search-field {
-    width: 80%;
-}
-
-.grayedOut {
-    background-color: #F2F2F2;
-}
-
-.entitiesTable {
+.wide-input {
     width: 100%;
 }
+
 
 .tile-right-aligned > ::ng-deep figure {
     justify-content: flex-end !important;
@@ -23,12 +14,9 @@
 
 .tile-left-aligned > ::ng-deep figure {
     justify-content: flex-start !important;
+    padding-left: 15px;
 }
 
-.formButton {
-    margin-left: 15px;
-}
-
-.checker {
+.btn-cancel {
     margin-left: 15px;
 }

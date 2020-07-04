@@ -5,12 +5,13 @@ import { CommonModule } from '@angular/common';
 import { SharedRoutingModule } from './shared-routing.module';
 import { HeaderComponent } from './components/header/header.component';
 
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -18,8 +19,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { RecommendationFormComponent } from './components/recommendation-form/recommendation-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
@@ -56,6 +59,7 @@ import { CarModelDetailsComponent } from './components/car-model-details/car-mod
     MatCheckboxModule,
     MatFormFieldModule,
     MatGridListModule,
+    MatIconModule,
     MatInputModule,
     MatListModule,
     MatPaginatorModule,
@@ -63,8 +67,10 @@ import { CarModelDetailsComponent } from './components/car-model-details/car-mod
     MatRadioModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatTableModule,
     MatTabsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTooltipModule
   ],
   providers:
   [
@@ -85,6 +91,7 @@ import { CarModelDetailsComponent } from './components/car-model-details/car-mod
     MatCheckboxModule,
     MatFormFieldModule,
     MatGridListModule,
+    MatIconModule,
     MatInputModule,
     MatListModule,
     MatPaginatorModule,
@@ -92,8 +99,10 @@ import { CarModelDetailsComponent } from './components/car-model-details/car-mod
     MatRadioModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatTableModule,
     MatTabsModule,
     MatToolbarModule,
+    MatTooltipModule,
     PaginationComponent
   ]
 })

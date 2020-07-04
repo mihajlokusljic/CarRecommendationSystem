@@ -1,3 +1,67 @@
 <h1>Car manufacturers</h1>
+<p>*A car manufacturer can be deleted only if it does not have associated car models.</p>
 
 <button id="addManufacturer" mat-raised-button color="primary" routerLink="/admin/addManufacturer">Add manufacturer</button>
+
+<!-- Car manufacturers preview -->
+<div class="content-wrapper">
+
+    <!-- Loading data spinner -->
+    <div *ngIf="loadingData">
+        <mat-grid-list cols="1" rowHeight="3:1">
+            <mat-grid-tile>
+                <mat-spinner></mat-spinner>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+
+    <!-- Car manufacturers table -->
+    <div class="mat-elevation-z8" *ngIf="dataFound && !loadingData">
+
+        <table mat-table [dataSource]="carManufacturers" class="mat-elevation-z8 entitiesTable">
+
+            <!-- Manufacturer name column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef class="grayedOut"> Manufacturer name </th>
+                <td mat-cell *matCellDef="let manufacturer"> {{manufacturer.name}} </td>
+            </ng-container>
+
+            <!-- Base country name column -->
+            <ng-container matColumnDef="countryName">
+                <th mat-header-cell *matHeaderCellDef class="grayedOut"> Base country </th>
+                <td mat-cell *matCellDef="let manufacturer"> {{manufacturer.countryName}} </td>
+            </ng-container>
+
+            <!-- Actions column -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef class="grayedOut"> Actions </th>
+                <td mat-cell *matCellDef="let manufacturer">
+                    <button mat-icon-button color="primary" matTooltip="Edit manufacturer" (click)="onEditManufacturer(manufacturer.id)">
+                        <mat-icon aria-label="Edit">edit</mat-icon>
+                    </button>
+
+                    <button *ngIf="manufacturer.canDelete" mat-icon-button color="primary" matTooltip="Delete manufacturer" (click)="onDeleteManufacturer(manufacturer.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <!-- Pagination -->
+        <mat-paginator [length]="pagingInfo.totalItemsFound" [pageSize]="pagingInfo.selectedPageSize" [pageSizeOptions]="[5, 10, 20]"
+            [pageIndex]="pagingInfo.selectedPageIndex" (page)="onPagingChanged($event)" showFirstLastButtons class="grayedOut">
+        </mat-paginator>
+    </div>
+
+    <!-- No data message -->
+    <div *ngIf="!dataFound && !loadingData">
+        <mat-grid-list cols="1" rowHeight="4:1">
+            <mat-grid-tile>
+                <h1>There are no car manufacturers found matching the given criteria.</h1>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>

@@ -9,6 +9,7 @@ import { CarModelsComponent } from './components/car-models/car-models.component
 import { AddCarModelComponent } from './components/add-car-model/add-car-model.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { TrendingConstraintConfigComponent } from './components/trending-constraint-config/trending-constraint-config.component';
+import { EditCarManufacturerComponent } from './components/edit-car-manufacturer/edit-car-manufacturer.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { TrendingConstraintConfigComponent } from './components/trending-constra
     AddCarManufacturerComponent,
     CarModelsComponent,
     AddCarModelComponent,
-    TrendingConstraintConfigComponent
+    TrendingConstraintConfigComponent,
+    EditCarManufacturerComponent
   ],
   imports: [
     CommonModule,

@@ -1,3 +1,4 @@
+import { EditCarManufacturerComponent } from './components/edit-car-manufacturer/edit-car-manufacturer.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CarManufacturersComponent } from './components/car-manufacturers/car-manufacturers.component';
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'admin/addManufacturer',
     component: AddCarManufacturerComponent
+  },
+  {
+    path: 'admin/editManufacturer/:id',
+    component: EditCarManufacturerComponent
   },
   {
     path: 'admin/carModels',
