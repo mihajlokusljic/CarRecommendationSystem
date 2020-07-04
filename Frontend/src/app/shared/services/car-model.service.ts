@@ -20,6 +20,10 @@ export class CarModelService {
     return this.httpClient.post<CarModelDTO>(this.baseUrl, newCarModel);
   }
 
+  public getCarModelDetails(id: number): Observable<CarModelDTO> {
+    return this.httpClient.get<CarModelDTO>(`${this.baseUrl}/${id}`);
+  }
+
   public getTrendingmodels(page: number, size: number): Observable<CarModelPage> {
     let params = new HttpParams();
     params = params.set('page', page.toString());

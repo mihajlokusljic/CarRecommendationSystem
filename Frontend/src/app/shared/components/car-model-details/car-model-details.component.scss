@@ -1,0 +1,24 @@
+.input-field {
+    width: 90%;
+}
+
+.wide-input {
+    width: 100%;
+}
+
+
+.tile-right-aligned > ::ng-deep figure {
+    justify-content: flex-end !important;
+    overflow: auto !important;
+}
+
+.tile-left-aligned > ::ng-deep figure {
+    justify-content: flex-start !important;
+    padding-left: 15px;
+}
+
+.tabbed-data {
+    margin: 15px;
+    margin-top: 40px;
+    padding: 15px;
+}

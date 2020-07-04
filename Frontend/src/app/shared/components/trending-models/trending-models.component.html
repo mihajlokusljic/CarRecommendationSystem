@@ -1,10 +1,18 @@
-<div class="wrapper" *ngIf="isAdmin()">
-    <button mat-raised-button color="primary" (click)="onChangeTrending()">Change requirenments for trending</button>
+<div *ngIf="!showingDetails">
+    <div class="wrapper" *ngIf="isAdmin()">
+        <button mat-raised-button color="primary" (click)="onChangeTrending()">Change requirenments for trending</button>
+    </div>
+    
+    <div class="wrapper" *ngFor="let carModel of carModels">
+        <app-car-model-card [carModel]="carModel" (showModelDetailsEvent)="onShowModelDetails($event)"></app-car-model-card>
+    </div>
+    
+    <app-pagination [pagingInfo]="pagingInfo" (paginationRequestEvent)="onPagingInfoChanged($event)"></app-pagination>
 </div>
 
-<div class="wrapper" *ngFor="let carModel of carModels">
-    <app-car-model-card [carModel]="carModel"></app-car-model-card>
-</div>
+<div *ngIf="showingDetails">
+    <app-car-model-details [carModelId]="selectedModelId" [edit]="false"></app-car-model-details>
 
-<app-pagination [pagingInfo]="pagingInfo" (paginationRequestEvent)="onPagingInfoChanged($event)"></app-pagination>
+    <button mat-raised-button color="primary" (click)="onBackToTrending()" class="back-btn">Back to trending car models</button>
+</div>
 

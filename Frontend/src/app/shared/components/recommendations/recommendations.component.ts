@@ -31,7 +31,7 @@ export class RecommendationsComponent implements OnInit {
     );
   }
 
-  onReturn() {
+  onReturn(event: boolean) {
     this.querying = true;
     this.loading = false;
     this.recommendations = [];

@@ -18,6 +18,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RecommendationFormComponent } from './components/recommendation-form/recommendation-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,6 +29,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
 import { CarModelCardComponent } from './components/car-model-card/car-model-card.component';
 import { TrendingModelsComponent } from './components/trending-models/trending-models.component';
+import { CarModelDetailsComponent } from './components/car-model-details/car-model-details.component';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { TrendingModelsComponent } from './components/trending-models/trending-m
     LoginComponent,
     CarModelCardComponent,
     TrendingModelsComponent,
-    PaginationComponent
+    PaginationComponent,
+    CarModelDetailsComponent
   ],
   imports:
   [
@@ -60,6 +63,7 @@ import { TrendingModelsComponent } from './components/trending-models/trending-m
     MatRadioModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatTabsModule,
     MatToolbarModule
   ],
   providers:
@@ -88,6 +92,7 @@ import { TrendingModelsComponent } from './components/trending-models/trending-m
     MatRadioModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatTabsModule,
     MatToolbarModule,
     PaginationComponent
   ]

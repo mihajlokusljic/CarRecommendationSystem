@@ -1,3 +1,4 @@
+import { CarModelDetailsComponent } from './components/car-model-details/car-model-details.component';
 import { TrendingModelsComponent } from './components/trending-models/trending-models.component';
 import { LoginComponent } from './components/login/login.component';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';

@@ -18,6 +18,8 @@ export class TrendingModelsComponent implements OnInit {
   carModels: Array<CarModelDTO> = [];
   private pagingInfo: PagingInfo = { selectedPageIndex: 0, selectedPageSize: 5 };
   private currentUserRole = UserRole.UNREGISTERED;
+  private showingDetails = false;
+  private selectedModelId;
 
   constructor(
     private carModelService: CarModelService,
@@ -53,6 +55,15 @@ export class TrendingModelsComponent implements OnInit {
     this.pagingInfo = newPagingInfo;
     // this.router.navigate(['/events/searchResults'], { queryParams: this.generateQueryParams() });
     this.fetchTrendingModels();
+  }
+
+  onShowModelDetails(carModelId: number) {
+    this.selectedModelId = carModelId;
+    this.showingDetails = true;
+  }
+
+  onBackToTrending() {
+    this.showingDetails = false;
   }
 
   isAdmin() {

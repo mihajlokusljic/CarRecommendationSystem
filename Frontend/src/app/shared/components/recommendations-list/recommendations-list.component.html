@@ -5,25 +5,36 @@
 </div>
 
 <div *ngIf="recommendations.length > 0">
-  <div class="centered">
-    <h1>
-        You have {{ recommendations.length }} recommendation<span *ngIf="recommendations.length > 1">s</span>:
-    </h1>
+  <div *ngIf="!showingDetails">
+    <div class="centered">
+      <h1>
+          You have {{ recommendations.length }} recommendation<span *ngIf="recommendations.length > 1">s</span>:
+      </h1>
+    </div>
+  
+    <mat-card class="example-card">
+        <mat-card-header class="centered">
+          <mat-card-title>{{ activeRecommendationIndex + 1 }}: {{ activeRecommendation.carModel }}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="../../../../assets/images/defaultCar.png" alt="Error loading image">
+        <mat-card-content class="centered">
+          <h1>{{ activeRecommendation.price }} ‎€</h1>
+        </mat-card-content>
+        <mat-card-actions class="centered">
+          <button mat-button *ngIf="activeRecommendationIndex > 0" (click)="onPrevoius()">Previous</button>
+          <button mat-raised-button color="primary" (click)="onDetailsClicked(activeRecommendation.carModelId)">More details</button>
+          <button mat-button *ngIf="activeRecommendationIndex < recommendations.length - 1" (click)="onNext()">Next</button>
+        </mat-card-actions>
+    </mat-card>
   </div>
 
-  <mat-card class="example-card">
-      <mat-card-header class="centered">
-        <mat-card-title>{{ activeRecommendationIndex + 1 }}: {{ activeRecommendation.carModel }}</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image src="../../../../assets/images/defaultCar.png" alt="Error loading image">
-      <mat-card-content class="centered">
-        <h1>{{ activeRecommendation.price }} ‎€</h1>
-      </mat-card-content>
-      <mat-card-actions class="centered">
-        <button mat-button *ngIf="activeRecommendationIndex > 0" (click)="onPrevoius()">Previous</button>
-        <button mat-raised-button color="primary">More details</button>
-        <button mat-button *ngIf="activeRecommendationIndex < recommendations.length - 1" (click)="onNext()">Next</button>
-      </mat-card-actions>
-  </mat-card>
+  <div *ngIf="showingDetails">
+    <app-car-model-details [carModelId]="activeRecommendation.carModelId" [edit]="false"></app-car-model-details>
+    <button mat-raised-button color="primary" (click)="onBackToRecommendationsClicked()">Back to recommendations</button>
+  </div>
+</div>
+
+<div *ngIf="!showingDetails">
+  <button mat-raised-button color="primary" [style.fontSize.px]=28 (click)="onReturn()" class="back-btn">Back to search</button>
 </div>
   

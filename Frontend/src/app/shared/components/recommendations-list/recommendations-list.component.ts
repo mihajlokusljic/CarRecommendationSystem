@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { RecommendationDTO } from '../../models/RecommendationDTO';
 
 @Component({
@@ -9,10 +10,14 @@ import { RecommendationDTO } from '../../models/RecommendationDTO';
 export class RecommendationsListComponent implements OnInit {
 
   @Input() recommendations: Array<RecommendationDTO>;
+  @Output() backToSearchEvent = new EventEmitter<boolean>();
   activeRecommendationIndex = 0;
   activeRecommendation: RecommendationDTO;
+  showingDetails = false;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
     if (this.recommendations.length > 0) {
@@ -28,6 +33,19 @@ export class RecommendationsListComponent implements OnInit {
   onNext() {
     this.activeRecommendationIndex += 1;
     this.activeRecommendation = this.recommendations[this.activeRecommendationIndex];
+  }
+
+  onDetailsClicked(carModelId: number) {
+    // this.router.navigate([`carModel/${carModelId}`]);
+    this.showingDetails = true;
+  }
+
+  onBackToRecommendationsClicked() {
+    this.showingDetails = false;
+  }
+
+  onReturn() {
+    this.backToSearchEvent.emit(true);
   }
 
 }
