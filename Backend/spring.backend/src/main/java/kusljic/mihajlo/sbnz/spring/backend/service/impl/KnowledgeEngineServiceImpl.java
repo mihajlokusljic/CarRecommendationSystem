@@ -70,17 +70,9 @@ public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
 
 		// generate global observations about car models
 		Agenda agenda = this.kieSession.getAgenda();
+		agenda.getAgendaGroup("trending").setFocus();
 		agenda.getAgendaGroup("global observations").setFocus();
 		this.kieSession.fireAllRules();
-
-		RecommendationQuery testQuery = new RecommendationQuery();
-		testQuery.setBudget(100000);
-		Country serbia = this.countryService.findById(190L);
-		testQuery.setUsersCountry(serbia);
-		List<ObservationType> relevantObservations = Arrays.asList(ObservationType.BEGINNER_FRIENDLY,
-				ObservationType.CITY_FRIENDLY, ObservationType.CONNECTIVITY_SUPPORTED);
-		testQuery.setRequestedFeatures(relevantObservations);
-		this.generateRecommendations(testQuery);
 	}
 
 	@Override
@@ -181,7 +173,9 @@ public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
 	}
 	
 	@Override
-	public void fireRules() {
+	public void updateTrending() {
+		Agenda agenda = this.kieSession.getAgenda();
+		agenda.getAgendaGroup("trending").setFocus();
 		this.kieSession.fireAllRules();
 	}
 	
@@ -189,6 +183,5 @@ public class KnowledgeEngineServiceImpl implements KnowledgeEngineService {
 	private void releaseSession() {
 		this.kieSession.dispose();
 	}
-
 
 }

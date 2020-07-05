@@ -19,6 +19,6 @@ public interface KnowledgeEngineService {
 	
 	boolean removeCarModelData(CarModel modelToRemove);
 	
-	void fireRules();
+	void updateTrending();
 
 }

@@ -33,11 +33,12 @@ public class CarManufacturer {
 	@JoinColumn(name = "country_id")
 	private Country countryOfOrigin;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "manufacturer")	
+	@OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "manufacturer")	
 	private Set<CarModel> carModels;
 	
 	public CarManufacturer() {
 		super();
+		this.carModels = new HashSet<CarModel>();
 	}
 	
 	public CarManufacturer(String name, String logoImagePath, Country countryOfOrigin) {

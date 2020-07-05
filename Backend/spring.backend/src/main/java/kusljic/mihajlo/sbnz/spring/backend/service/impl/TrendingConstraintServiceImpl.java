@@ -51,7 +51,7 @@ public class TrendingConstraintServiceImpl implements TrendingConstraintService 
 		}
 		
 		this.updateTrendingRules(newConstraint);
-		this.knowledgeEngineService.fireRules();
+		this.knowledgeEngineService.updateTrending();
 		return this.trendingConstraintRepository.save(currentConstraint);
 	}
 

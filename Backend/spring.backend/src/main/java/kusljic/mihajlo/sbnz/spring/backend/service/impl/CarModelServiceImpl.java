@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import kusljic.mihajlo.sbnz.spring.backend.exception.EntityAlreadyExistsException;
 import kusljic.mihajlo.sbnz.spring.backend.exception.InvalidFieldException;
+import kusljic.mihajlo.sbnz.spring.backend.facts.CarManufacturer;
 import kusljic.mihajlo.sbnz.spring.backend.facts.CarModel;
+import kusljic.mihajlo.sbnz.spring.backend.repository.CarManufacturerRepository;
 import kusljic.mihajlo.sbnz.spring.backend.repository.CarModelRepository;
 import kusljic.mihajlo.sbnz.spring.backend.service.CarModelService;
 import kusljic.mihajlo.sbnz.spring.backend.service.KnowledgeEngineService;
@@ -20,12 +22,14 @@ import kusljic.mihajlo.sbnz.spring.backend.service.KnowledgeEngineService;
 public class CarModelServiceImpl implements CarModelService {
 	
 	private CarModelRepository carModelRepository;
+	private CarManufacturerRepository carManufacturerRepository;
 	private KnowledgeEngineService knowledgeEngineService;
 	
 	@Autowired
-	public CarModelServiceImpl(CarModelRepository carModelRepository, KnowledgeEngineService knowledgeEngineService) {
+	public CarModelServiceImpl(CarModelRepository carModelRepository, CarManufacturerRepository carManufacturerRepository, KnowledgeEngineService knowledgeEngineService) {
 		super();
 		this.carModelRepository = carModelRepository;
+		this.carManufacturerRepository = carManufacturerRepository;
 		this.knowledgeEngineService = knowledgeEngineService;
 	}
 
@@ -72,6 +76,9 @@ public class CarModelServiceImpl implements CarModelService {
 			throw new EntityNotFoundException(String.format("Car model with id %d does not exist", carModelId));
 		}
 		this.knowledgeEngineService.removeCarModelData(toDelete);
+		CarManufacturer manufacturer = toDelete.getManufacturer();
+		manufacturer.getCarModels().remove(toDelete);
+		this.carManufacturerRepository.save(manufacturer);
 		this.carModelRepository.delete(toDelete);
 	}
 

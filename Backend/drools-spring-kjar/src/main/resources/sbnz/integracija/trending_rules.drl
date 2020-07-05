@@ -8,7 +8,7 @@ rule "Set trending car models"
 	agenda-group "trending"
 	when 
 		$m: CarModel(trending == false)
-		Number(intValue >= 2) from accumulate (
+		Number(intValue >= 1) from accumulate (
 			$rh: RecommendationHistory(carModel == $m) over window:time( 5d ),
 			count($rh)
 		)
@@ -22,7 +22,7 @@ rule "Set non-trending car models"
 	agenda-group "trending"
 	when 
 		$m: CarModel(trending == true)
-		Number(intValue < 2) from accumulate (
+		Number(intValue < 1) from accumulate (
 			$rh: RecommendationHistory(carModel == $m) over window:time( 5d ),
 			count($rh)
 		)
